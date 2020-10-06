@@ -1,12 +1,15 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { useDeviceOrientation, useDimensions } from '@react-native-community/hooks'
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import ViewImageScreen from "./app/screens/ViewImageScreen";
+
 
 export default function App() {
 
   console.log("render")
   return (
-      <Text>Yo Yo</Text>
+    <WelcomeScreen/>
   );
 
 }

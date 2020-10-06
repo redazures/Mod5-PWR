@@ -84,3 +84,16 @@ const styles = StyleSheet.create({
         }}/>
       </View>
   );
+
+
+  text: {
+    fontSize: 30,
+    fontStyle: "italic",
+    fontWeight: "600",
+    color: "#8c7d70",
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    textTransform: "capitalize",
+    textAlign: "center",
+    lineHeight: 30,
+    padding:20,
+  },
