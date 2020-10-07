@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     textAlign: "center",
     lineHeight: 30,
-    padding:20,
+    paddingVertical:20,
     fontSize: 25,
-    fontFamily: "Avenir"
+    fontFamily: "Avenir",
   },
 });
 
