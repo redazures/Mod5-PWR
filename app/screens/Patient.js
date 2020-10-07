@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Card from "../components/Card";
+import PatientCard from "../components/PatientCard";
 
-const Patients = () => {
+const Patient = () => {
   return (
     <View style={styles.card}>
-      <Card
+      <PatientCard
         title="Red Jacket for Sale"
         subTitle="100"
         image={require("../assets/doggie.png")}
@@ -14,7 +14,7 @@ const Patients = () => {
   );
 };
 
-export default Patients;
+export default Patient;
 
 const styles = StyleSheet.create({
   Card: {
