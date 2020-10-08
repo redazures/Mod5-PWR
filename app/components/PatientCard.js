@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import colors from "../config/colors";
 import BodyText from "./AppText/BodyText";
-import ListItem from './PatientLog'
+import ListItem from './ListItems'
 
 export default function PatientCard({ title, subTitle, image }) {
   return (
