@@ -98,4 +98,11 @@ const styles = StyleSheet.create({
     padding:20,
   },
 
+  For Text input 
+  maxLength={5}
+  keyboardType="numeric"
+  clearbuttonMod="always" //only works on IOS
+  secureTextEntry="true" or just have secureTextEntry
+
+
   

@@ -15,16 +15,21 @@ import ListItems from "./app/components/ListItems";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import { TextInput } from "react-native-gesture-handler";
-import AppTextInput from "./app/components/AppTextInput";
-
-import colors from './app/config/colors'
 
 export default function App() {
   const[firstName, setFirstName] = useState('')
   console.log("render");
   return (
     <Screen>
-      <AppTextInput placeholder={"Username"} icon='email'/>
+      <Text>{firstName}</Text>
+      <TextInput placeholder='First Name'
+        clearButtonMode="always"
+        onChangeText={text=>setFirstName(text)}
+        style={{
+          borderBottomColor:'#ccc',
+          borderBottomWidth:1,
+        }}
+      />
     </Screen>
   );
 }
