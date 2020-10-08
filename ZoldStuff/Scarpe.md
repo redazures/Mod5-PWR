@@ -97,3 +97,5 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     padding:20,
   },
+
+  

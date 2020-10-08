@@ -10,12 +10,13 @@ import Screen from './app/components/Screen'
 import Icon from './app/components/Icon'
 import ListItems from './app/components/ListItems'
 import AccountScreen from './app/screens/AccountScreen'
+import ListingsScreen from "./app/screens/ListingsScreen";
 
 export default function App() {
 
   console.log("render")
   return (
-    <AccountScreen/>
+    <ListingsScreen/>
   );
 
 }
