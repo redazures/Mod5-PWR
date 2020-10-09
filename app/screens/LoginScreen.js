@@ -8,6 +8,7 @@ import AppFormField from '../components/AppFormField'
 import AppTextInput from '../components/AppTextInput'
 import Screen from '../components/Screen'
 import SubmitButton from '../components/SubmitButton'
+import AppForm from './AppForm'
 
 
 const validationSchema=Yup.object().shape({
@@ -20,35 +21,31 @@ export default function LoginScreen(props) {
     return (
         <Screen style={styles.container}>
             <Image style={styles.logo} source={require('../assets/healthcare.png')}/>
-            <Formik
+            <AppForm
                 initialValues={{email:'',password:''}}
                 onSubmit={values=>console.log(values)}
                 validationSchema={validationSchema}
             >
-                {()=>(
-                <>
-                    <AppFormField
-                        autoCapitalize="none" // this prevents IOS and android to auto capitalize first letter
-                        autoCorrect={false}
-                        icon="email"
-                        keyboardType='email-address'
-                        name='email'
-                        placeholder="Email"
-                        textContentType="emailAddress" //allows IOS to autofill from keychain
-                    />
-                    <AppFormField
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        icon='lock'
-                        name='password'
-                        placeholder='Password'
-                        secureTextEntry
-                        textContentType='password' //allows IOS to autofill from keychain
-                    />
-                    <SubmitButton title={'login'}/>
-                </>
-            )}
-            </Formik>
+                <AppFormField
+                    autoCapitalize="none" // this prevents IOS and android to auto capitalize first letter
+                    autoCorrect={false}
+                    icon="email"
+                    keyboardType='email-address'
+                    name='email'
+                    placeholder="Email"
+                    textContentType="emailAddress" //allows IOS to autofill from keychain
+                />
+                <AppFormField
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    icon='lock'
+                    name='password'
+                    placeholder='Password'
+                    secureTextEntry
+                    textContentType='password' //allows IOS to autofill from keychain
+                />
+                <SubmitButton title={'login'}/>
+            </AppForm>
         </Screen>
     )
 }
