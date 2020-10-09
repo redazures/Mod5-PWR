@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import colors from "../config/colors";
-import BodyText from "./AppText/BodyText";
+import BodyText from "./BodyText";
 
 export default function PatientCard({ title, subTitle, image }) {
   return (

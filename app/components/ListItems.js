@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
-import BodyText from "./AppText/BodyText";
+import BodyText from "./BodyText";
 import colors from "../config/colors";
 
 

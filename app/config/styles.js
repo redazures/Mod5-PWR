@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native'
-import colors from '../config/colors'
+import colors from './colors'
 
-const styles = StyleSheet.create({
+export default{
     background: {
         flex:1,
         justifyContent:'flex-end',
         alignItems:'center'
-    },
+    },colors,
     buttonContainer:{
         padding:20,
         width:'100%',
@@ -34,12 +34,15 @@ const styles = StyleSheet.create({
         height:70,
         backgroundColor:'#4ecdc4',
     },
+    text:{
+        fontSize:18,
+        fontFamily: Platform.OS==="android" ? "Roboto" : "Avenir",
+        color:colors.dark
+    },
     welcomeText:{
         color:colors.white,
         fontSize:18,
         textTransform:"uppercase",
         fontWeight:'bold',
     },
-})
-
-export default styles;
+}

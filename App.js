@@ -1,5 +1,5 @@
 import React, {useState}from "react";
-import { View,Text } from "react-native";
+import { View,Text, Switch } from "react-native";
 import {
   useDeviceOrientation,
   useDimensions,
@@ -18,13 +18,15 @@ import { TextInput } from "react-native-gesture-handler";
 import AppTextInput from "./app/components/AppTextInput";
 
 import colors from './app/config/colors'
+import AppPicker from "./app/components/AppPicker";
 
 export default function App() {
-  const[firstName, setFirstName] = useState('')
+  const[isNew, setIsNew] = useState(false)
   console.log("render");
   return (
     <Screen>
-      <AppTextInput placeholder={"Username"} icon='email'/>
+        <AppPicker icon="apps" placeholder="category"/>
+        <AppTextInput icon="email" placeholder="Email"/>
     </Screen>
   );
 }
