@@ -7,6 +7,7 @@ import AppButton from '../components/AppButton'
 import AppFormField from '../components/AppFormField'
 import AppTextInput from '../components/AppTextInput'
 import Screen from '../components/Screen'
+import SubmitButton from '../components/SubmitButton'
 
 
 const validationSchema=Yup.object().shape({
@@ -24,7 +25,7 @@ export default function LoginScreen(props) {
                 onSubmit={values=>console.log(values)}
                 validationSchema={validationSchema}
             >
-                    {({handleChange,handleSubmit,errors,setFieldTouched, touched})=>(
+                {()=>(
                 <>
                     <AppFormField
                         autoCapitalize="none" // this prevents IOS and android to auto capitalize first letter
@@ -44,10 +45,7 @@ export default function LoginScreen(props) {
                         secureTextEntry
                         textContentType='password' //allows IOS to autofill from keychain
                     />
-                    <AppButton
-                        title='Login'
-                        onPress={handleSubmit}
-                    />
+                    <SubmitButton title={'login'}/>
                 </>
             )}
             </Formik>
