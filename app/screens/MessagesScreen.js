@@ -11,20 +11,20 @@ import ListItemDeleteAction from '../components/ListItemDeleteAction';
 const Initialmessages = [
   {
     id: 1,
-    title: 'First Item',
-    description:'Yous not a smaht man',
+    title: 'You have got mail',
+    description:'Yous not a smaht man. Some more random words to make this a little longer',
     image: require('../assets/nurse.jpeg'),
   },
   {
     id: 2,
-    title: 'Second Item',
+    title: 'qhat does the fox say',
     description:'I said it',
     image: require('../assets/nurse.jpeg'),
   },
   {
     id: 3,
-    title: 'Third Item',
-    description:'You need some free healthcare',
+    title: 'just a little bit',
+    description:'You need some free healthcare. this is some long long lie',
     image: require('../assets/nurse.jpeg'),
   },
 ];
