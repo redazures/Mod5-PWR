@@ -12,7 +12,7 @@ export default{
         width:'100%',
     },
     loginButton:{
-        width: '100%',
+        width: '95%',
         backgroundColor:colors.primary,
         borderRadius:25,
         justifyContent:'center',
