@@ -4,11 +4,11 @@ import {Formik} from 'formik'
 import * as Yup from 'yup'
 
 import AppButton from '../components/AppButton'
-import AppFormField from '../components/AppFormField'
+import AppFormField from '../components/forms/AppFormField'
 import AppTextInput from '../components/AppTextInput'
 import Screen from '../components/Screen'
-import SubmitButton from '../components/SubmitButton'
-import AppForm from './AppForm'
+import SubmitButton from '../components/forms/SubmitButton'
+import AppForm from '../components/forms/AppForm'
 
 
 const validationSchema=Yup.object().shape({
