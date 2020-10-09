@@ -19,14 +19,18 @@ import AppTextInput from "./app/components/AppTextInput";
 
 import colors from './app/config/colors'
 import AppPicker from "./app/components/AppPicker";
+import LoginScreen from './app/screens/LoginScreen'
+
+const categories=[
+  {label:"Medical", value:1},
+  {label:"Surgery", value:2},
+  {label:"ICU", value:3},
+]
 
 export default function App() {
-  const[isNew, setIsNew] = useState(false)
-  console.log("render");
+  
+  console.log("render")
   return (
-    <Screen>
-        <AppPicker icon="apps" placeholder="category"/>
-        <AppTextInput icon="email" placeholder="Email"/>
-    </Screen>
+    <LoginScreen/>
   );
 }

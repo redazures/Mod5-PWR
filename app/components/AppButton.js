@@ -11,5 +11,4 @@ const AppButton = ({title, onPress, color='primary'}) => {
         </TouchableOpacity>
     )
 }
-
 export default AppButton
