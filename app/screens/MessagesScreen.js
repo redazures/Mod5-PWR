@@ -3,10 +3,10 @@ import { FlatList, StyleSheet, View} from 'react-native';
 
 
 //These are my components
-import ListItems from '../components/ListItems';
-import ListItemSeparator from '../components/ListItemSeparator';
+import ListItems from '../components/lists/ListItems';
+import ListItemSeparator from '../components/lists/ListItemSeparator';
 import Screen from '../components/Screen'
-import ListItemDeleteAction from '../components/ListItemDeleteAction';
+import ListItemDeleteAction from '../components/lists/ListItemDeleteAction';
 
 const Initialmessages = [
   {

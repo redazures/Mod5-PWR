@@ -11,7 +11,7 @@ import PatientList from "./app/screens/PatientList";
 import MessagesScreen from "./app/screens/MessagesScreen.js";
 import Screen from "./app/components/Screen";
 import Icon from "./app/components/Icon";
-import ListItems from "./app/components/ListItems";
+import ListItems from "./app/components/lists/ListItems";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import { TextInput } from "react-native-gesture-handler";

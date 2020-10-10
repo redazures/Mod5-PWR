@@ -3,8 +3,8 @@ import { StyleSheet, View, Image, TouchableHighlight,} from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
-import BodyText from "./BodyText";
-import colors from "../config/colors";
+import BodyText from "../BodyText";
+import colors from "../../config/colors";
 
 
 export default function ListItems({ title, subTitle, image, IconComponent,onPress, renderRightActions }) {
