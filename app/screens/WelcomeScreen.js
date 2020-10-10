@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, ImageBackground, StyleSheet, Text, View,Platform } from 'react-native'
 import AppText from '../components/AppText/AppText'
 import styles from '../config/styles'
-import AppButton from '../components/AppButton'
+import AppButton from '../components/Button'
 
 
 

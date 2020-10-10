@@ -18,7 +18,7 @@ import { TextInput } from "react-native-gesture-handler";
 import AppTextInput from "./app/components/TextInput";
 
 import colors from './app/config/colors'
-import AppPicker from "./app/components/AppPicker";
+import AppPicker from "./app/components/Picker";
 import LoginScreen from './app/screens/LoginScreen'
 import RegisterScreen from './app/screens/RegisterScreen'
 import ListEditScreen from './app/screens/ListEditScreen'
