@@ -20,11 +20,13 @@ import AppTextInput from "./app/components/AppTextInput";
 import colors from './app/config/colors'
 import AppPicker from "./app/components/AppPicker";
 import LoginScreen from './app/screens/LoginScreen'
+import RegisterScreen from './app/screens/RegisterScreen'
+import ListEditScreen from './app/screens/ListEditScreen'
 
 export default function App() {
   
   console.log("render")
   return (
-    <LoginScreen/>
+    <ListEditScreen/>
   );
 }

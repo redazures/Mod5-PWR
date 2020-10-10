@@ -1,26 +1,30 @@
 import React from 'react'
-import { Image, StyleSheet} from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import * as Yup from 'yup'
 
 import Screen from '../components/Screen'
 import {AppFormField, SubmitButton, AppForm} from '../components/forms'
 
-
 const validationSchema=Yup.object().shape({
     email:Yup.string().required().email().label("Email"),
-    password:Yup.string().required().min(4).label("password")
+    name:Yup.string().required().label("Name"),
+    password:Yup.string().required().min(4).label("password"),
 })
 
-export default function LoginScreen(props) {
-
+export default function RegisterScreen() {
     return (
         <Screen style={styles.container}>
-            <Image style={styles.logo} source={require('../assets/healthcare.png')}/>
             <AppForm
-                initialValues={{email:'',password:''}}
-                onSubmit={values=>console.log(values)}
+                initialValues={{name:"",email:"",password:""}}
+                onSubmit={(values)=>console.log(values)}
                 validationSchema={validationSchema}
             >
+                <AppFormField
+                    autoCorrect={false}
+                    icon='account'
+                    name='name'
+                    placeholder="Name"
+                />
                 <AppFormField
                     autoCapitalize="none" // this prevents IOS and android to auto capitalize first letter
                     autoCorrect={false}
@@ -47,7 +51,7 @@ export default function LoginScreen(props) {
 
 const styles = StyleSheet.create({
     container:{
-        padding:10
+        padding:10,
     },
     logo:{
         width:100,
