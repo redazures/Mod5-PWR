@@ -23,11 +23,12 @@ import LoginScreen from './app/screens/LoginScreen'
 import RegisterScreen from './app/screens/RegisterScreen'
 import ListEditScreen from './app/screens/ListEditScreen'
 import * as ImagePicker from 'expo-image-picker'
+import  * as Permission from 'expo-permissions'
 
 export default function App() {
-  const requestPermission = () =>  {
-    const result = ImagePicker.requestCameraPermissionsAsync()
-    
+  const requestPermission = async () =>  {
+    const {granted }= await Permission.askAsync(Permission.CAMERA_ROLL)
+    if(!granted)alert('Permission Not-granted')
   }
 
   useEffect(()=>{
@@ -36,6 +37,6 @@ export default function App() {
 
   console.log("render")
   return (
-    <ListEditScreen/>
+    <Screen></Screen>
   );
 }
