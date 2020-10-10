@@ -7,12 +7,12 @@ import BodyText from './BodyText'
 import Screen from './Screen'
 import PickerItem from './PickerItem'
 
-export default function AppPicker({icon, items, onSelectItem, placeholder, selectedItem}) {
+export default function AppPicker({icon, items, onSelectItem, numberOfColumns, PickerItemComponent = PickerItem, placeholder, selectedItem, width='100%'}) {
     const [modalVisible, setModalVisible] = useState(false)
     return (
         <React.Fragment>
             <TouchableWithoutFeedback onPress={()=>setModalVisible(true)}>
-                <View style={styles.container}>
+                <View style={[styles.container, {width}]}>
                     {icon && (<MaterialCommunityIcons name={icon} size={20} color={defaultStyles.colors.medium} style={styles.icon}/>)}
                     {selectedItem ? 
                         <BodyText style={styles.text}>{selectedItem.label}</BodyText> 
@@ -32,14 +32,17 @@ export default function AppPicker({icon, items, onSelectItem, placeholder, selec
                         <FlatList
                             data={items}
                             keyExtractor={item=>item.value.toString()}
-                            renderItem={({item})=><PickerItem
-                                label={item.label}
-                                onPress ={()=>{
-                                    setModalVisible(false)
-                                    onSelectItem(item)
-                                    console.log(item)
-                                }}
-                            />}
+                            numColumns={numberOfColumns}
+                            renderItem={({item})=>
+                                <PickerItemComponent
+                                    item={item}
+                                    label={item.label}
+                                    onPress ={()=>{
+                                        setModalVisible(false)
+                                        onSelectItem(item)
+                                        console.log(item)
+                                    }}
+                                />}
                         />
                     </Screen>
             </Modal>
@@ -52,7 +55,6 @@ const styles = StyleSheet.create({
         backgroundColor:defaultStyles.colors.light,
         borderRadius:25,
         flexDirection:'row',
-        width:'100%',
         padding:15,
         marginVertical:10,
     },

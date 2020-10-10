@@ -12,13 +12,14 @@ export default{
         width:'100%',
     },
     loginButton:{
-        width: '95%',
+        width: '100%',
         backgroundColor:colors.primary,
         borderRadius:25,
         justifyContent:'center',
         alignItems:'center',
         padding:15,
         margin:10,
+        left:-10
     },
     logo:{
         width: 100,
