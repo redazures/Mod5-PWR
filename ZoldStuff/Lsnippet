@@ -1,0 +1,26 @@
+export default useLocation = () => {
+    const [location, setLocation] = useState()
+    const getLocaton = async () =>{
+        const {granted} = await Location.requestPermissionsAsync()
+        try {
+            
+        } catch (error) {
+            
+        }
+        if(!granted) return;
+        result = await Location.getLastKnownPositionAsync()
+        // console.log("first result", result)
+        // if (result===null){let result = await Location.getCurrentPositionAsync()}
+        // const result = await Location.getCurrentPositionAsync()
+        // console.log(result)
+        const {coords:{latitude, longitude}} = result
+        // console.log(latitude, longitude)
+        setLocation({latitude, longitude})
+    }   
+
+    useEffect(()=>{
+        getLocaton()
+    },)
+
+    return location
+}

@@ -1,5 +1,5 @@
 import React, {useEffect, useState}from "react";
-import { View,Text, Switch } from "react-native";
+import { View,Text, Switch,Button, Image } from "react-native";
 import {
   useDeviceOrientation,
   useDimensions,
@@ -24,19 +24,13 @@ import RegisterScreen from './app/screens/RegisterScreen'
 import ListEditScreen from './app/screens/ListEditScreen'
 import * as ImagePicker from 'expo-image-picker'
 import  * as Permission from 'expo-permissions'
+import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInputList";
 
 export default function App() {
-  const requestPermission = async () =>  {
-    const {granted }= await Permission.askAsync(Permission.CAMERA_ROLL)
-    if(!granted)alert('Permission Not-granted')
-  }
-
-  useEffect(()=>{
-    requestPermission()
-  })
 
   console.log("render")
   return (
-    <Screen></Screen>
+    <ListEditScreen/>
   );
 }

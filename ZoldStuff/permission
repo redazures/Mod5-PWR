@@ -1,0 +1,15 @@
+export default function App() {
+  const requestPermission = async () =>  {
+    const {granted }= await Permission.askAsync(Permission.CAMERA_ROLL)
+    if(!granted)alert('Permission Not-granted')
+  }
+
+  useEffect(()=>{
+    requestPermission()
+  })
+
+  console.log("render")
+  return (
+    <Screen></Screen>
+  );
+}
