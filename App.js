@@ -21,12 +21,6 @@ import colors from './app/config/colors'
 import AppPicker from "./app/components/AppPicker";
 import LoginScreen from './app/screens/LoginScreen'
 
-const categories=[
-  {label:"Medical", value:1},
-  {label:"Surgery", value:2},
-  {label:"ICU", value:3},
-]
-
 export default function App() {
   
   console.log("render")
