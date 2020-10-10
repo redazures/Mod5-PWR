@@ -1,4 +1,4 @@
-import React, {useState}from "react";
+import React, {useEffect, useState}from "react";
 import { View,Text, Switch } from "react-native";
 import {
   useDeviceOrientation,
@@ -22,9 +22,18 @@ import AppPicker from "./app/components/Picker";
 import LoginScreen from './app/screens/LoginScreen'
 import RegisterScreen from './app/screens/RegisterScreen'
 import ListEditScreen from './app/screens/ListEditScreen'
+import * as ImagePicker from 'expo-image-picker'
 
 export default function App() {
-  
+  const requestPermission = () =>  {
+    const result = ImagePicker.requestCameraPermissionsAsync()
+    
+  }
+
+  useEffect(()=>{
+    requestPermission()
+  })
+
   console.log("render")
   return (
     <ListEditScreen/>
