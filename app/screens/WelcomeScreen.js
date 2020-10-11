@@ -6,7 +6,7 @@ import AppButton from '../components/Button'
 
 
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({navigation}) {
     return (
         <ImageBackground 
             style={styles.background}
@@ -17,8 +17,18 @@ export default function WelcomeScreen() {
                 <AppText >Privilege with Responsibility</AppText>
             </View>
             <View style={styles.buttonContainer}>
-                <AppButton title="login" onPress={()=>console.log("tapped")}/>
-                <AppButton title="Register" color="secondary" onPress={()=>console.log("Reggie Miller tapped")}/>
+                <AppButton title="login" onPress={()=>
+                    {
+                        console.log("tapped")
+                        navigation.navigate("Login")
+                    }}
+                />
+                <AppButton title="Register" color="secondary" onPress={()=>
+                    {
+                        console.log("Reggie Miller tapped")
+                        navigation.navigate("Register")
+                    }}
+                />
             </View>
         </ImageBackground>
     )
