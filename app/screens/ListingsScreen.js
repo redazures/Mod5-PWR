@@ -1,10 +1,11 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import routes from '../components/navigation/routes'
 
+import routes from '../components/navigation/routes'
 import PatientCard from '../components/PatientCard'
 import Screen from '../components/Screen'
 import colors from '../config/colors'
+
 
 export default function ListingsScreen({navigation}) {
     
