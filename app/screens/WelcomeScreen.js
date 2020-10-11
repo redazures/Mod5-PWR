@@ -4,8 +4,6 @@ import AppText from '../components/AppText/AppText'
 import styles from '../config/styles'
 import AppButton from '../components/Button'
 
-
-
 export default function WelcomeScreen({navigation}) {
     return (
         <ImageBackground 

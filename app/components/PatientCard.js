@@ -1,17 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../config/colors";
 import BodyText from "./BodyText";
 
-export default function PatientCard({ title, subTitle, image }) {
+export default function PatientCard({ title, subTitle, image, onPress }) {
   return (
-    <View style={styles.card}>
-        <Image source={image} style={styles.image}/>
-      <View style={styles.detailsContainer}>
-        <BodyText style={styles.title}>{title}</BodyText>
-        <BodyText style={styles.subTitle}>{subTitle}</BodyText>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.card}>
+          <Image source={image} style={styles.image}/>
+        <View style={styles.detailsContainer}>
+          <BodyText style={styles.title}>{title}</BodyText>
+          <BodyText style={styles.subTitle}>{subTitle}</BodyText>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

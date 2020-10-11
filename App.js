@@ -6,8 +6,8 @@ import {
 } from "@react-native-community/hooks";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
-import Patient from "./app/screens/Patient";
-import PatientList from "./app/screens/PatientList";
+//import Patient from "./ZoldStuff/Patient";
+//import PatientList from "./app/screens/PatientList";
 import MessagesScreen from "./app/screens/MessagesScreen.js";
 import Screen from "./app/components/Screen";
 import Icon from "./app/components/Icon";
@@ -31,14 +31,16 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import AuthNavigator from "./app/components/navigation/AuthNavigator";
+import NavigationTheme from "./app/components/navigation/NavigationTheme";
+import AppNavigator from "./app/components/navigation/AppNavigator";
 
 
 export default function App() {
 
   console.log("render")
   return (
-    <NavigationContainer>
-      <AuthNavigator/>
+    <NavigationContainer theme={NavigationTheme}>
+      <AppNavigator/>
     </NavigationContainer>
   );
 }

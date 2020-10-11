@@ -5,7 +5,7 @@ import PatientCard from '../components/PatientCard'
 import Screen from '../components/Screen'
 import colors from '../config/colors'
 
-export default function ListingsScreen() {
+export default function ListingsScreen({navigation}) {
     
     const listings=[
         {
@@ -32,6 +32,7 @@ export default function ListingsScreen() {
                         title={item.title}
                         subTitle={"$"+item.price}
                         image={item.image}
+                        onPress={()=>navigation.navigate("ListingDetails",item)}
                     />
                 )}
             />
