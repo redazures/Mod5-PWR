@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
+import routes from '../components/navigation/routes'
 
 import PatientCard from '../components/PatientCard'
 import Screen from '../components/Screen'
@@ -32,7 +33,7 @@ export default function ListingsScreen({navigation}) {
                         title={item.title}
                         subTitle={"$"+item.price}
                         image={item.image}
-                        onPress={()=>navigation.navigate("ListingDetails",item)}
+                        onPress={()=>navigation.navigate(routes.LISTING_DETAILS,item)}
                     />
                 )}
             />

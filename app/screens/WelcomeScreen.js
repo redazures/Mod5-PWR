@@ -3,6 +3,8 @@ import { Image, ImageBackground, StyleSheet, Text, View,Platform } from 'react-n
 import AppText from '../components/AppText/AppText'
 import styles from '../config/styles'
 import AppButton from '../components/Button'
+import routes from '../components/navigation/routes'
+
 
 export default function WelcomeScreen({navigation}) {
     return (
@@ -18,13 +20,13 @@ export default function WelcomeScreen({navigation}) {
                 <AppButton title="login" onPress={()=>
                     {
                         console.log("tapped")
-                        navigation.navigate("Login")
+                        navigation.navigate(routes.LOGIN)
                     }}
                 />
                 <AppButton title="Register" color="secondary" onPress={()=>
                     {
                         console.log("Reggie Miller tapped")
-                        navigation.navigate("Register")
+                        navigation.navigate(routes.REGISTER)
                     }}
                 />
             </View>

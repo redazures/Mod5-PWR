@@ -8,17 +8,32 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 //import routes from "./routes";
 import ListingsScreen from "../../screens/ListingsScreen";
 import ListingEditScreen from "../../screens/ListEditScreen";
-import AccountScreen from "../../screens/AccountScreen";
 import FeedNavigator from "./FeedNavigator";
 import AccountNavigator from "./AccountNavigator";
+import NewListinButton from "./NewListinButton";
+import routes from "./routes";
 
 const Tab = createBottomTabNavigator()
 
 const AppNavigator = () =>(
     <Tab.Navigator>
-        <Tab.Screen name="Feed" component={FeedNavigator}/>
-        <Tab.Screen name="ListingEdit" component={ListingEditScreen}/>
-        <Tab.Screen name="Account" component={AccountNavigator}/>
+        <Tab.Screen name="Feed" component={FeedNavigator} 
+            options={{
+                tabBarIcon:({color,size})=>
+                <MaterialCommunityIcons name="hospital-building" color={color} size={size}/>
+            }}/>
+        <Tab.Screen name="ListingEdit" component={ListingEditScreen} 
+            options={({navigation})=>({
+                tabBarButton:()=>
+                    <NewListinButton onPress={()=>navigation.navigate(routes.LISTING_EDIT)}/>,
+                tabBarIcon:({color,size})=>
+                <MaterialCommunityIcons name="plus-circle" color={color} size={size}/>
+            })}/>
+        <Tab.Screen name="Account" component={AccountNavigator}
+        options={{
+            tabBarIcon:({color,size})=>
+            <MaterialCommunityIcons name="briefcase-account" color={color} size={size}/>
+        }}/>
     </Tab.Navigator>
 )
 
