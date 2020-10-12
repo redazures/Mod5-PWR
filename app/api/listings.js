@@ -1,9 +1,9 @@
 import client from './client';
 
-const endpoint = '/listings';
+const endpoint = 'patients';
 
-const getListings = () => client.get('/listings')
+const getListings = () => client.get(endpoint)
 
 export default {
-    getlistings,
+    getListings,
 }

@@ -7,10 +7,10 @@ import BodyText from "../components/BodyText";
 
 function ListingDetailsScreen({ route }) {
 const listing = route.params;
-
+console.log(listing)
 return (
     <View>
-        <Image style={styles.image} source={listing.image} />
+        <Image style={styles.image} source={{uri: listing.images[0].url}} />
         <View View style={styles.detailsContainer}>
             <BodyText style={styles.title}>{listing.title}</BodyText>
             <BodyText style={styles.price}>${listing.price}</BodyText>

@@ -4,11 +4,12 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../config/colors";
 import BodyText from "./BodyText";
 
-export default function PatientCard({ title, subTitle, image, onPress }) {
+export default function PatientCard({ title, subTitle, imageUrl, onPress }) {
+  // console.log(imageUrl)
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
-          <Image source={image} style={styles.image}/>
+          <Image source={{uri:imageUrl}} style={styles.image}/>
         <View style={styles.detailsContainer}>
           <BodyText style={styles.title}>{title}</BodyText>
           <BodyText style={styles.subTitle}>{subTitle}</BodyText>

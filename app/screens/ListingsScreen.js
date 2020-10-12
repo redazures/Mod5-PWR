@@ -1,31 +1,46 @@
-import React from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
 
 import routes from '../components/navigation/routes'
 import PatientCard from '../components/PatientCard'
 import Screen from '../components/Screen'
 import colors from '../config/colors'
+import listingsApi from '../api/listings'
+import BodyText from '../components/BodyText'
+import AppButton from '../components/Button'
+
 
 
 export default function ListingsScreen({navigation}) {
-    
-    const listings=[
-        {
-            id:1,
-            title: 'red jacket for sale',
-            price: 100,
-            image: require('../assets/favicon.png')
-        },
-        {
-            id:2,
-            title: 'gogo power rangers',
-            price: 1000,
-            image: require('../assets/doggie.png')
-        },
-    ]
+
+    const [listings, setListings] = useState([])
+    const [error, setError] = useState(false)
+    // const [oading, setLoading] = useState(false)
+
+    useEffect(()=>{
+        loadlistings()
+    }, [])
+
+    const loadlistings = async () =>{
+        // setLoading(true)
+        const response = await listingsApi.getListings();
+        // setLoading(false)
+        console.log(response)
+        if (!response.ok) return setError(true) //console.log(response.problem) // console.log(response.data)
+        setError(false)
+        setListings(response.data)
+    }
     
     return (
         <Screen style={styles.screen}>
+            {error && <>
+                <BodyText>Couldn't retrieve data</BodyText>
+                <AppButton title='Retry' onPress={()=>{
+                    console.log("try again")
+                    loadlistings
+                }}/>
+            </>}
+            
             <FlatList
                 data={listings}
                 keyExtractor={listing=>listing.id.toString()}
@@ -33,7 +48,7 @@ export default function ListingsScreen({navigation}) {
                     <PatientCard
                         title={item.title}
                         subTitle={"$"+item.price}
-                        image={item.image}
+                        imageUrl={item.images[0].url}
                         onPress={()=>navigation.navigate(routes.LISTING_DETAILS,item)}
                     />
                 )}
