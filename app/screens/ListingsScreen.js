@@ -8,28 +8,17 @@ import colors from '../config/colors'
 import listingsApi from '../api/listings'
 import BodyText from '../components/BodyText'
 import AppButton from '../components/Button'
+import useApi from '../components/hooks/useApi'
 
 
 
 export default function ListingsScreen({navigation}) {
 
-    const [listings, setListings] = useState([])
-    const [error, setError] = useState(false)
-    // const [oading, setLoading] = useState(false)
+    const {data:listings, error, loading, reuqest:loadListings} = useApi(listingsApi.getListings)
 
     useEffect(()=>{
-        loadlistings()
+        loadListings()
     }, [])
-
-    const loadlistings = async () =>{
-        // setLoading(true)
-        const response = await listingsApi.getListings();
-        // setLoading(false)
-        console.log(response)
-        if (!response.ok) return setError(true) //console.log(response.problem) // console.log(response.data)
-        setError(false)
-        setListings(response.data)
-    }
     
     return (
         <Screen style={styles.screen}>
@@ -40,7 +29,7 @@ export default function ListingsScreen({navigation}) {
                     loadlistings
                 }}/>
             </>}
-            
+            <ActivityIndicator animating={loading} />
             <FlatList
                 data={listings}
                 keyExtractor={listing=>listing.id.toString()}

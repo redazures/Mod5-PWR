@@ -12,6 +12,7 @@ export default{
         width:'100%',
     },
     loginButton:{
+        zindex: 1,
         width: '100%',
         backgroundColor:colors.primary,
         borderRadius:25,
