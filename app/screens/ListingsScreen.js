@@ -14,36 +14,24 @@ import useApi from '../components/hooks/useApi'
 
 export default function ListingsScreen({navigation}) {
 
-    const [listings, setlistings] = useState([])
-    const [error, setError] = useState(false)
-    const [loading, setLoading] = useState(false)
+   const getListingsApi = useApi(listingsApi.getListings)
 
     useEffect(()=>{
-        loadListings()
+        getListingsApi.request()
     }, [])
-
-    const loadListings = async () => {
-        setLoading(true)
-        const response = await listingsApi.getListings();
-        setLoading(false)
-        if (!response.ok) return setError(true) 
-        setError(false)
-        setlistings(response.data)
-    }
-
 
     return (
         <Screen style={styles.screen}>
-            {error && <>
+            {getListingsApi.error && <>
                 <BodyText>Couldn't retrieve data</BodyText>
                 <AppButton title='Retry' onPress={()=>{
                     console.log("try again")
                     loadlistings
                 }}/>
             </>}
-            <ActivityIndicator animating={loading} />
+            <ActivityIndicator animating={getListingsApi.loading} size={80}/>
             <FlatList
-                data={listings}
+                data={getListingsApi.data}
                 keyExtractor={listing=>listing.id.toString()}
                 renderItem={({item})=>(
                     <PatientCard
