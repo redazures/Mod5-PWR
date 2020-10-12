@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 export default useLocation = () => {
     const [location, setLocation] = useState()
+    
 
     const getLocaton = async () =>{
         const {granted} = await Location.requestPermissionsAsync()

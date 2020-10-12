@@ -14,12 +14,24 @@ import useApi from '../components/hooks/useApi'
 
 export default function ListingsScreen({navigation}) {
 
-    const {data:listings, error, loading, reuqest:loadListings} = useApi(listingsApi.getListings)
+    const [listings, setlistings] = useState([])
+    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
         loadListings()
     }, [])
-    
+
+    const loadListings = async () => {
+        setLoading(true)
+        const response = await listingsApi.getListings();
+        setLoading(false)
+        if (!response.ok) return setError(true) 
+        setError(false)
+        setlistings(response.data)
+    }
+
+
     return (
         <Screen style={styles.screen}>
             {error && <>
