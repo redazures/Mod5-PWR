@@ -5,7 +5,7 @@ const endpoint = '/listings'
 
 const getListings = () => client.get(endpoint)
 
-const addListings = listing =>{
+const addListings = (listing, onUploadProgress) =>{
     const data = new FormData()
     data.append('title',listing.title)
     data.append('price',listing.price)
@@ -25,7 +25,7 @@ const addListings = listing =>{
     
     return client.post(endpoint, data, {
         onUploadProgress:(progress)=>
-            console.log(progress.loaded/progress.total)
+            onUploadProgress(progress.loaded/progress.total)
     })
 }
 

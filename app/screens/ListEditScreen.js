@@ -27,12 +27,17 @@ const categories = [
 export default function ListingEditScreen() {
     const location = useLocation()
 
-    const handleSubmit = async (listings) =>{
+    const handleSubmit = async (listings, {resetForm}) =>{
         // console.log(listing)
-        const result = await listingsApi.addListings({...listings, location})
+        const result = await listingsApi.addListings(
+            {...listings, location},
+            (progress)=>console.log(progress)
+        )
         // console.log(result)
         if (!result.ok) return alert ('Could not save data at this time')
         alert('success')
+
+        resetForm()
     }
 
     return (
