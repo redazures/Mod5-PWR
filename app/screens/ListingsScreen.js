@@ -29,7 +29,7 @@ export default function ListingsScreen({navigation}) {
                     loadlistings
                 }}/>
             </>}
-            <ActivityIndicator animating={getListingsApi.loading} size={80}/>
+            {getListingsApi.loading && <ActivityIndicator animating={getListingsApi.loading} size={80}/>}
             <FlatList
                 data={getListingsApi.data}
                 keyExtractor={listing=>listing.id.toString()}

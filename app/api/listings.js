@@ -9,7 +9,7 @@ const addListings = listing =>{
     const data = new FormData()
     data.append('title',listing.title)
     data.append('price',listing.price)
-    console.log(listing.images)
+    
     data.append('categoryId',listing.category.value)
     data.append('description',listing.description)
     listing.images.forEach((image,index)=>data.append('images',{
@@ -18,10 +18,15 @@ const addListings = listing =>{
         uri: image,
     }))
 
+    // console.log("this is my client", client.post(endpoint))
+
     if(listing.location)
         data.append('location', JSON.stringify(listing.location))
     
-    return client.post('/listing', data)
+    return client.post(endpoint, data, {
+        onUploadProgress:(progress)=>
+            console.log(progress.loaded/progress.total)
+    })
 }
 
 export default {

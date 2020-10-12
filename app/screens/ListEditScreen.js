@@ -30,6 +30,7 @@ export default function ListingEditScreen() {
     const handleSubmit = async (listings) =>{
         // console.log(listing)
         const result = await listingsApi.addListings({...listings, location})
+        // console.log(result)
         if (!result.ok) return alert ('Could not save data at this time')
         alert('success')
     }
