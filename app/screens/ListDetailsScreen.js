@@ -1,27 +1,38 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet,Text } from "react-native";
 
 import colors from "../config/colors";
 import ListItem from "../components/lists/ListItems";
 import BodyText from "../components/BodyText";
+import { FlatList } from "react-native-gesture-handler";
+import listings from "../api/listings";
+import Screen from '../components/Screen'
+import ListItemSeparator from "../components/lists/ListItemSeparator";
+  
+  const renderItem = ({ item }) => (
+    <BodyText>{item.description + " on " + item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0]}</BodyText>
+  );
 
 function ListingDetailsScreen({ route }) {
 const listing = route.params;
-console.log(listing)
+const ledgers = listing.ledgers.reverse()   
+console.log(ledgers[0].created_at.split("T")[0])
+
 return (
-    <View>
-        
-        <View View style={styles.detailsContainer}>
-            <BodyText style={styles.title}>{listing.title}</BodyText>
-            <BodyText style={styles.price}>{listing.price}</BodyText>
-            <View style={styles.userContainer}>
-                <ListItem
-                    title="Mosh Hamedani"
-                    subTitle="5 Listings"
-                />
-            </View>
+        <Screen View style={styles.detailsContainer}>
+            <FlatList
+                data={ledgers}
+                renderItem={renderItem}
+                ItemSeparatorComponent={ListItemSeparator}
+                keyExtractor={item => item.id.toString()}
+            />
+        <View style={styles.userContainer}>
+            <ListItem
+                title={listing.users[0].name + " - Main Professional"}
+                subTitle={listing.users[0].title}
+            />
         </View>
-    </View>
+        </Screen>
 );
 }
 
