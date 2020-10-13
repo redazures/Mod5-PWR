@@ -42,7 +42,7 @@ const MessagesScreen = (props) => {
 
   console.log("this is my messages")
   return (
-    <Screen style>
+    <Screen>
       <FlatList
         data={messages}
         keyExtractor={item => item.id.toString()}

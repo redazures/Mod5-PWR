@@ -3,17 +3,19 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../config/colors";
 import BodyText from "./BodyText";
+import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 export default function PatientCard({ title, subTitle, imageUrl, onPress }) {
   // console.log(imageUrl)
+  //
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
-          <Image source={{uri:imageUrl}} style={styles.image}/>
-        <View style={styles.detailsContainer}>
-          <BodyText style={styles.title}>{title}</BodyText>
-          <BodyText style={styles.subTitle}>{subTitle}</BodyText>
-        </View>
+          {imageUrl ? <Image source={{uri:imageUrl}} style={styles.image}/> : <MaterialCommunityIcons name='camera' size={40} colors={colors.medium}/>}
+          <View style={styles.detailsContainer}>
+            <BodyText style={styles.title}>{title}</BodyText>
+            <BodyText style={styles.subTitle}>{subTitle}</BodyText>
+          </View>
       </View>
     </TouchableOpacity>
   );
@@ -25,13 +27,15 @@ const styles = StyleSheet.create({
     backgroundColor:colors.white,
     marginBottom: 20,
     overflow:'hidden',
+    flexDirection:"row",
+    flex:.5,
   },
   detailsContainer:{
     padding:20,
   },
   image:{
-      width:"100%",
-      height:200,
+      width:"25%",
+      height:100,
   },
   subTitle:{
     color:colors.secondary,

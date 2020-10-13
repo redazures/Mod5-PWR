@@ -16,7 +16,6 @@ return (
             <BodyText style={styles.price}>${listing.price}</BodyText>
             <View style={styles.userContainer}>
                 <ListItem
-                    image={require("../assets/doggie.png")}
                     title="Mosh Hamedani"
                     subTitle="5 Listings"
                 />

@@ -8,7 +8,8 @@ import FormImagePicker from "../components/forms/FormImagePicker";
 import Screen from "../components/Screen";
 import listingsApi from '../api/listings'
 import useLocation from "../components/hooks/useLocation";
-import listings from "../api/listings";
+import routes from "../components/navigation/routes";
+
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required().min(1).label("Title"),
@@ -24,7 +25,7 @@ const categories = [
     {label:"ICU", value:3, backgroundColor:'blue', icon:'lock'},
 ];
 
-export default function ListingEditScreen() {
+export default function ListingEditScreen({navigation}) {
     const location = useLocation()
 
     const handleSubmit = async (listings, {resetForm}) =>{
@@ -36,10 +37,10 @@ export default function ListingEditScreen() {
         // console.log(result)
         if (!result.ok) return alert ('Could not save data at this time')
         alert('success')
-
         resetForm()
+        navigation.navigate(routes.LISTINGS_SCREEN, listings)
     }
-
+    // console.log(navigation)
     return (
         <Screen style={styles.container}>
             <Form

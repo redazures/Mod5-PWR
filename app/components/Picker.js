@@ -40,7 +40,7 @@ export default function AppPicker({icon, items, onSelectItem, numberOfColumns, P
                                     onPress ={()=>{
                                         setModalVisible(false)
                                         onSelectItem(item)
-                                        console.log(item)
+                                        // console.log(item)
                                     }}
                                 />}
                         />

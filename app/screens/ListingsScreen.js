@@ -12,21 +12,21 @@ import useApi from '../components/hooks/useApi'
 
 
 
-export default function ListingsScreen({navigation}) {
-
+export default function ListingsScreen({navigation, route}) {
+    const [refreshing, setRefreshing] = useState(false)
    const getListingsApi = useApi(listingsApi.getListings)
 
     useEffect(()=>{
         getListingsApi.request()
-    }, [])
-
+    }, [route])
+    console.log("this is my route stuff in listings screen",route.params)
     return (
         <Screen style={styles.screen}>
             {getListingsApi.error && <>
                 <BodyText>Couldn't retrieve data</BodyText>
                 <AppButton title='Retry' onPress={()=>{
                     console.log("try again")
-                    loadlistings
+                    getListingsApi.loadlistings
                 }}/>
             </>}
             {getListingsApi.loading && <ActivityIndicator animating={getListingsApi.loading} size={80}/>}
@@ -41,6 +41,8 @@ export default function ListingsScreen({navigation}) {
                         onPress={()=>navigation.navigate(routes.LISTING_DETAILS,item)}
                     />
                 )}
+                refreshing={refreshing}
+                onRefresh={()=>getListingsApi.request()}
             />
         </Screen>
     )
