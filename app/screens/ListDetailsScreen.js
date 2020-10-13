@@ -10,7 +10,7 @@ const listing = route.params;
 console.log(listing)
 return (
     <View>
-        <Image style={styles.image} source={{uri: listing.images[0].url}} />
+        
         <View View style={styles.detailsContainer}>
             <BodyText style={styles.title}>{listing.title}</BodyText>
             <BodyText style={styles.price}>{listing.price}</BodyText>
@@ -49,3 +49,5 @@ const styles = StyleSheet.create({
 });
 
 export default ListingDetailsScreen;
+
+//<Image style={styles.image} source={{uri: listing.images[0].url}} />
