@@ -1,4 +1,3 @@
-import listingsApi from '../../api/listings'
 import { useState } from "react";
 
 export default useApi = (apiFunc) => {

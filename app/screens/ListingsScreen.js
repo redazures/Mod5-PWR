@@ -14,12 +14,15 @@ import useApi from '../components/hooks/useApi'
 
 export default function ListingsScreen({navigation, route}) {
     const [refreshing, setRefreshing] = useState(false)
-   const getListingsApi = useApi(listingsApi.getListings)
+    const getListingsApi = useApi(listingsApi.getListings)
 
     useEffect(()=>{
         getListingsApi.request()
+        console.log("I am in my use effect")
     }, [route])
-    // console.log(getListingsApi)
+
+    // setData(getListingsApi.data)
+    // console.log(data)
     // console.log("this is my route stuff in listings screen",route.params)
     return (
         <Screen style={styles.screen}>

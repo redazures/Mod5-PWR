@@ -1,37 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Image, StyleSheet,Text } from "react-native";
 
 import colors from "../config/colors";
 import ListItem from "../components/lists/ListItems";
 import BodyText from "../components/BodyText";
 import { FlatList } from "react-native-gesture-handler";
-import listings from "../api/listings";
 import Screen from '../components/Screen'
 import ListItemSeparator from "../components/lists/ListItemSeparator";
+import ListItemDeleteAction from "../components/lists/ListItemDeleteAction";
+import { useEffect } from "react";
+import listingsApi from '../api/listings'
   
-  const renderItem = ({ item }) => (
-    <BodyText>{item.description + " on " + item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0]}</BodyText>
-  );
 
-function ListingDetailsScreen({ route }) {
-const listing = route.params;
-const ledgers = listing.ledgers.reverse()   
-console.log(ledgers[0].created_at.split("T")[0])
+function ListingDetailsScreen({ navigation, route }) {
+    const listing = route.params;
+    const[editLedger, useEditLedger]=useState(false)
 
+    const [removedItems, setRemovedItems] = useState([])
+    // console.log(logs)
+
+    const filterlogs=()=>{
+        let logs = listing.ledgers
+        return logs
+    }
+
+    // console.log("render details screen", removedItems)
+
+    const handleDelete = (log)=>{
+        // console.log("what what",removedItems.length)
+        const result = listingsApi.deleteListings(log)
+    }  
+
+    const renderItem = ({ item }) => (
+        <ListItem
+            title={item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0]}
+            subTitle={item.description}
+            logo='chevron-left'
+            onPress={()=>{
+                console.log("onpress action",navigation)
+                useEditLedger(!editLedger)
+            }}
+            renderRightActions={()=>
+                <ListItemDeleteAction onPress={()=>handleDelete(item)}/>
+                }
+        />
+      );
 return (
         <Screen View style={styles.detailsContainer}>
+            <View style={styles.userContainer}>
+                <ListItem
+                    title={listing.users[0].name + " - Main Professional"}
+                    subTitle={listing.users[0].title}
+                />
+            </View>
             <FlatList
-                data={ledgers}
-                renderItem={renderItem}
-                ItemSeparatorComponent={ListItemSeparator}
-                keyExtractor={item => item.id.toString()}
-            />
-        <View style={styles.userContainer}>
-            <ListItem
-                title={listing.users[0].name + " - Main Professional"}
-                subTitle={listing.users[0].title}
-            />
-        </View>
+                    data={filterlogs()}
+                    renderItem={renderItem}
+                    ItemSeparatorComponent={ListItemSeparator}
+                    keyExtractor={item => item.id.toString()}
+                    
+                />
         </Screen>
 );
 }

@@ -7,9 +7,9 @@ import BodyText from "../BodyText";
 import colors from "../../config/colors";
 
 
-export default function ListItems({ title, subTitle, image, IconComponent,onPress, renderRightActions }) {
+export default function ListItems({ title, subTitle, image, IconComponent,onPress, renderRightActions,renderLeftActions, logo="chevron-right" }) {
   return (
-        <Swipeable renderRightActions={renderRightActions}>
+        <Swipeable renderRightActions={renderRightActions} renderLeftActions={renderLeftActions}>
             <TouchableHighlight
                 underlayColor={colors.light}
                 onPress={onPress}>
@@ -18,11 +18,11 @@ export default function ListItems({ title, subTitle, image, IconComponent,onPres
                     {image && <Image style={styles.image} source={image} />}
                     <View style={styles.detailsContainer}>
                       <BodyText style={styles.title} numberOfLines={1}>{title}</BodyText>
-                      {subTitle && <BodyText style={styles.subTitle} numberOfLines={2}>{subTitle}</BodyText>}
+                      {subTitle && <BodyText style={styles.subTitle} >{subTitle}</BodyText>}
                     </View>
                     <MaterialCommunityIcons 
                       color={colors.medium}
-                      name="chevron-right" 
+                      name={logo}
                       size={25}/>
                 </View>
             </TouchableHighlight>

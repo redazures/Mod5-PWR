@@ -11,7 +11,7 @@ import routes from "../components/navigation/routes";
 const validationSchema = Yup.object().shape({
     name: Yup.string().required().min(1).label("Name"),
     room: Yup.number().required().min(1).max(999).label("Room"),
-    description: Yup.string().label("Description"),
+    description: Yup.string().required().label("Description"),
 });
 
 export default function ListingEditScreen({navigation}) {
