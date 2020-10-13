@@ -19,7 +19,8 @@ export default function ListingsScreen({navigation, route}) {
     useEffect(()=>{
         getListingsApi.request()
     }, [route])
-    console.log("this is my route stuff in listings screen",route.params)
+    // console.log(getListingsApi)
+    // console.log("this is my route stuff in listings screen",route.params)
     return (
         <Screen style={styles.screen}>
             {getListingsApi.error && <>
@@ -35,9 +36,9 @@ export default function ListingsScreen({navigation, route}) {
                 keyExtractor={listing=>listing.id.toString()}
                 renderItem={({item})=>(
                     <PatientCard
-                        title={item.title}
-                        subTitle={"$"+item.price}
-                        imageUrl={item.images[0].url}
+                        title={item.name}
+                        subTitle={"Room " + item.ledgers[0].current_room}
+                        //imageUrl={item.images[0].url}
                         onPress={()=>navigation.navigate(routes.LISTING_DETAILS,item)}
                     />
                 )}

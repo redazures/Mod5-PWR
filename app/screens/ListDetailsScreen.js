@@ -13,7 +13,7 @@ return (
         <Image style={styles.image} source={{uri: listing.images[0].url}} />
         <View View style={styles.detailsContainer}>
             <BodyText style={styles.title}>{listing.title}</BodyText>
-            <BodyText style={styles.price}>${listing.price}</BodyText>
+            <BodyText style={styles.price}>{listing.price}</BodyText>
             <View style={styles.userContainer}>
                 <ListItem
                     title="Mosh Hamedani"

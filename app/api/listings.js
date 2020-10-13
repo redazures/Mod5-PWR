@@ -1,7 +1,7 @@
 import client from './client';
 
-const endpoint2 = 'patients';
-const endpoint = '/listings'
+const endpoint = 'patients';
+const endpoint2 = '/listings'
 
 const getListings = () => client.get(endpoint)
 
