@@ -10,11 +10,13 @@ import ListItemSeparator from "../components/lists/ListItemSeparator";
 import ListItemDeleteAction from "../components/lists/ListItemDeleteAction";
 import { useEffect } from "react";
 import listingsApi from '../api/listings'
+import routes from "../components/navigation/routes";
   
 
 function ListingDetailsScreen({ navigation, route }) {
     const listing = route.params;
-    const[editLedger, useEditLedger]=useState(false)
+    // console.log(listing)
+    // const[editLedger, useEditLedger]=useState(false)
 
     const [removedItems, setRemovedItems] = useState([])
     // console.log(logs)
@@ -29,7 +31,12 @@ function ListingDetailsScreen({ navigation, route }) {
     const handleDelete = (log)=>{
         // console.log("what what",removedItems.length)
         const result = listingsApi.deleteListings(log)
-    }  
+    }
+
+    const handleEdit =()=>{
+
+        navigation.navigate(routes.LISTING_EDIT,item)
+    }
 
     const renderItem = ({ item }) => (
         <ListItem
@@ -37,8 +44,8 @@ function ListingDetailsScreen({ navigation, route }) {
             subTitle={item.description}
             logo='chevron-left'
             onPress={()=>{
-                console.log("onpress action",navigation)
-                useEditLedger(!editLedger)
+                // console.log("onpress action",item)
+                navigation.navigate(routes.LEDGER_EDIT,item)
             }}
             renderRightActions={()=>
                 <ListItemDeleteAction onPress={()=>handleDelete(item)}/>
@@ -49,8 +56,8 @@ return (
         <Screen View style={styles.detailsContainer}>
             <View style={styles.userContainer}>
                 <ListItem
-                    title={listing.users[0].name + " - Main Professional"}
-                    subTitle={listing.users[0].title}
+                    title={listing.name + " P#:" +listing.hospital_patient_id}
+                    subTitle={listing.users[0].title+" "+listing.users[0].name}
                 />
             </View>
             <FlatList

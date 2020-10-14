@@ -27,11 +27,10 @@ const deleteListings=(item)=>{
     return client.delete(deleteLink)
 }
 
-const EditListings=(item)=>{
-    
-    console.log(endpointLedger+item.id)
-    
-    return client.patch(deleteLink)
+const editListings=(des,id)=>{
+    console.log("api",des,id)
+    console.log(endpointLedger+id)
+    return client.patch(endpointLedger+id,des)
 }
 
 
@@ -39,4 +38,5 @@ export default {
     addListings,
     getListings,
     deleteListings,
+    editListings,
 }

@@ -11,12 +11,12 @@ import routes from "../components/navigation/routes";
 const validationSchema = Yup.object().shape({
     name: Yup.string().required().min(1).label("Name"),
     room: Yup.number().required().min(1).max(999).label("Room"),
-    description: Yup.string().required().label("Description"),
+    description: Yup.string().required().min(1).label("Description"),
 });
 
-export default function ListingEditScreen({navigation}) {
+export default function ListingEditScreen({navigation, route}) {
     //const location = useLocation()
-
+    
     const handleSubmit = async (listings, {resetForm}) =>{
         console.log(listings)
         const result = await listingsApi.addListings(
@@ -30,10 +30,12 @@ export default function ListingEditScreen({navigation}) {
         navigation.navigate(routes.LISTINGS_SCREEN, listings)
     }
     // console.log(navigation)
+
+    console.log(route.params)
     return (
         <Screen style={styles.container}>
             <Form
-                initialValues={{ name: "", room: "", description: ""}}
+                initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >

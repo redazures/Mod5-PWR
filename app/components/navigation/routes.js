@@ -4,5 +4,6 @@ export default Object.freeze({
     LOGIN:'Login',
     MESSAGES:'Messages',
     REGISTER:'Register',
-    LISTINGS_SCREEN:"Listings"
+    LISTINGS_SCREEN:"Listings",
+    LEDGER_EDIT: "LedgerEdit"
 })
