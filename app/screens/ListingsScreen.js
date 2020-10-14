@@ -42,7 +42,7 @@ export default function ListingsScreen({navigation, route}) {
                 }}/>
             </>}
             {getListingsApi.loading && <ActivityIndicator animating={getListingsApi.loading} size={80}/>}
-            <SearchInput 
+            <TextInput 
                 onChangeText={searchHandler} 
                 style={styles.searchInput}
                 placeholder="Type a message to search"
@@ -54,7 +54,7 @@ export default function ListingsScreen({navigation, route}) {
                     <PatientCard
                         title={item.name}
                         subTitle={"Room " + item.ledgers.slice(-1)[0].current_room}
-                        //imageUrl={item.images[0].url}
+                        //imageUrl={it  em.images[0].url}
                         onPress={()=>navigation.navigate(routes.LISTING_DETAILS,item)}
                     />
                 )}

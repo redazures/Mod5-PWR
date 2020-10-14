@@ -15,27 +15,23 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function ListingEditScreen({navigation, route}) {
-    //const location = useLocation()
     
     const handleSubmit = async (listings, {resetForm}) =>{
-        console.log(listings)
         const result = await listingsApi.addListings(
             {...listings},
             (progress)=>console.log(progress)
         )
-        // console.log(result)
         if (!result.ok) return alert ('Could not save data at this time')
         alert('success')
         resetForm()
         navigation.navigate(routes.LISTINGS_SCREEN, listings)
     }
-    // console.log(navigation)
 
-    console.log(route.params)
+
     return (
         <Screen style={styles.container}>
             <Form
-                initialValues={initialValues}
+                initialValues={{ title: "", price: "", description: "", category: "", images:[]}}
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >

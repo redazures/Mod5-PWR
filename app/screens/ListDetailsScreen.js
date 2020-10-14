@@ -15,28 +15,24 @@ import routes from "../components/navigation/routes";
 
 function ListingDetailsScreen({ navigation, route }) {
     const listing = route.params;
-    // console.log(listing)
-    // const[editLedger, useEditLedger]=useState(false)
+    const [data, setData] = useState(listing.ledgers)
+    
+    // const [removedItems, setRemovedItems] = useState([])
+    // // console.log(logs)
 
-    const [removedItems, setRemovedItems] = useState([])
-    // console.log(logs)
-
-    const filterlogs=()=>{
-        let logs = listing.ledgers
-        return logs
-    }
+    // const filterlogs=()=>{
+    //     let logs = listing.ledgers
+    //     return logs
+    // }
 
     // console.log("render details screen", removedItems)
 
     const handleDelete = (log)=>{
-        // console.log("what what",removedItems.length)
+        console.log("what what",log,data)
+
         const result = listingsApi.deleteListings(log)
     }
 
-    const handleEdit =()=>{
-
-        navigation.navigate(routes.LISTING_EDIT,item)
-    }
 
     const renderItem = ({ item }) => (
         <ListItem
@@ -61,7 +57,7 @@ return (
                 />
             </View>
             <FlatList
-                    data={filterlogs()}
+                    data={data}
                     renderItem={renderItem}
                     ItemSeparatorComponent={ListItemSeparator}
                     keyExtractor={item => item.id.toString()}
