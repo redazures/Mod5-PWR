@@ -5,7 +5,7 @@ import colors from "../config/colors";
 import BodyText from "./BodyText";
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
-export default function PatientCard({ title, subTitle, imageUrl, onPress }) {
+export default function PatientCard({ title, subTitle, imageUrl, onPress, }) {
   // console.log(imageUrl)
   //
   return (

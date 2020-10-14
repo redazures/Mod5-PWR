@@ -26,7 +26,7 @@ export default function ListingEditScreen({navigation, route}) {
         if (!result.ok) return alert ('Could not save data at this time')
         alert('success')
         resetForm()
-        // navigation.navigate(routes.LISTINGS_SCREEN, listings)
+        navigation.goBack()
     }
 
     const {current_room, description, id} = route.params

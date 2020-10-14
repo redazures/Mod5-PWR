@@ -21,9 +21,6 @@ export default function ListingsScreen({navigation, route}) {
         console.log("I am in my use effect")
     }, [route])
 
-    // setData(getListingsApi.data)
-    // console.log(data)
-    // console.log("this is my route stuff in listings screen",route.params)
     return (
         <Screen style={styles.screen}>
             {getListingsApi.error && <>
