@@ -17,7 +17,6 @@ export default function ListingsScreen({navigation, route}) {
     const [refreshing, setRefreshing] = useState(false)
     const getListingsApi = useApi(listingsApi.getListings)
     const [searchTerm, setSearchTerm] = useState("")
-    const [searchResults, setSearchResults] = useState([])
 
     useEffect(()=>{
         getListingsApi.request()
