@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
+import SearchInput, { createFilter } from 'react-native-search-filter';
 
 import routes from '../components/navigation/routes'
 import PatientCard from '../components/PatientCard'
@@ -15,12 +16,23 @@ import useApi from '../components/hooks/useApi'
 export default function ListingsScreen({navigation, route}) {
     const [refreshing, setRefreshing] = useState(false)
     const getListingsApi = useApi(listingsApi.getListings)
+    const [searchTerm, setSearchTerm] = useState("")
+    const [searchResults, setSearchResults] = useState([])
 
     useEffect(()=>{
         getListingsApi.request()
-        console.log("I am in my use effect")
+        // console.log("I am in my use effect")
     }, [route])
 
+    const searchUpdated=()=>{
+        return getListingsApi.data.filter(el=>el.name.toLowerCase().includes(searchTerm.toLowerCase()))////console.log("this is filtered",joe.length) 
+    }
+
+    const searchHandler=(term)=>{
+        setSearchTerm(term)
+    }
+    
+    // console.log(searchUpdated().length)
     return (
         <Screen style={styles.screen}>
             {getListingsApi.error && <>
@@ -31,8 +43,13 @@ export default function ListingsScreen({navigation, route}) {
                 }}/>
             </>}
             {getListingsApi.loading && <ActivityIndicator animating={getListingsApi.loading} size={80}/>}
+            <SearchInput 
+                onChangeText={searchHandler} 
+                style={styles.searchInput}
+                placeholder="Type a message to search"
+            />
             <FlatList
-                data={getListingsApi.data}
+                data={searchUpdated(searchTerm)}
                 keyExtractor={listing=>listing.id.toString()}
                 renderItem={({item})=>(
                     <PatientCard
