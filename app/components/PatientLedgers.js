@@ -12,12 +12,18 @@ const validationSchema = Yup.object().shape({
   description: Yup.string().required().min(1).label("Description"),
 });
 
-export default function ListItems({ title, subTitle, renderRightActions,renderLeftActions, logo="chevron-right",color, editLedgerHandler }) {
+export default function ListItems({ title, subTitle, id, renderRightActions,renderLeftActions, logo="chevron-right",color, editLedgerHandler }) {
   const [addChangeLedger,setAddChangeLedger] =useState(false)
     
-  const showChangeLedger=()=>{
-    console.log(addChangeLedger)
+  const showChangeLedger=()=>{ // console.log(addChangeLedger)
     setAddChangeLedger(!addChangeLedger)
+  }
+
+  const editSubmitHandler=({description},{resetForm})=>{// editLedgerHandler(description,id)
+    // console.log(resetForm)
+    editLedgerHandler(description,id)
+    resetForm()
+    setAddChangeLedger(false)
   }
 
   return (
@@ -31,7 +37,7 @@ export default function ListItems({ title, subTitle, renderRightActions,renderLe
                       {addChangeLedger ? 
                         <Form
                             initialValues={{description:""}}
-                            onSubmit={editLedgerHandler}
+                            onSubmit={editSubmitHandler}
                             validationSchema={validationSchema}
                         >
                             <FormField

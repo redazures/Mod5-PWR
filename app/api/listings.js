@@ -28,9 +28,9 @@ const deleteListings=(item)=>{
 }
 
 const editListings=(des,id)=>{
-    console.log("api",des,id)
-    console.log(endpointLedger+id)
-    return client.patch(endpointLedger+id,des)
+    // console.log("api",des,id)
+    // console.log(endpointLedger+id)
+    return client.patch(endpointLedger+id,{description: des})
 }
 
 

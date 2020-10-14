@@ -35,11 +35,20 @@ function ListingDetailsScreen({ navigation, route }) {
         const result = listingsApi.deleteListings(log)
     }
 
-    editLedgerHandler=(des,id)=>{
-        console.log("edit handler button is working",des,id)
+    const editLedgerHandler= async (des,id)=>{ // console.log(foundObj)//console.log(newArray)
+        // console.log("edit handler button is working",des,id)
+        const foundObj= data.find(el=>el.id===id)
+        foundObj.description=des
+        let newArray = data.map(el=>el.id===id ? foundObj : el)
+        setData(newArray)
+        const result = await listingsApi.editListings(
+            des,id
+        )
+        // if (!result.ok) return alert ('Could not save data at this time')
+        // alert('success')
     }
 
-    addLedgerHandler=(room,des,id)=>{
+    const addLedgerHandler=(room,des,id)=>{
         console.log("add handler button is working", des, room, id)
     }
 
@@ -47,6 +56,7 @@ function ListingDetailsScreen({ navigation, route }) {
         <PatientLedgers
             title={item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0]}
             subTitle={item.description}
+            id={item.id}
             logo='arrow-left-bold'
             color={colors.danger}
             editLedgerHandler={editLedgerHandler}
