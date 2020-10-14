@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../config/colors";
 import BodyText from "./BodyText";
-import {MaterialCommunityIcons} from '@expo/vector-icons'
 
-export default function PatientCard({ title, subTitle, imageUrl, onPress, }) {
-  // console.log(imageUrl)
-  //
+export default function PatientCard({ title, subTitle, imageUrl, onPress}) {
+
+
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
           {imageUrl ? <Image source={{uri:imageUrl}} style={styles.image}/> : <Image source={require("../assets/healthcare.png")} style={styles.image}/>}
-          <View style={styles.detailsContainer}>
-            <BodyText style={styles.title}>{title}</BodyText>
-            <BodyText style={styles.subTitle}>{subTitle}</BodyText>
-          </View>
+            <View style={styles.detailsContainer}>
+              <BodyText style={styles.title}>{title}</BodyText>
+              <BodyText style={styles.subTitle}>{subTitle}</BodyText>
+            </View>
       </View>
     </TouchableOpacity>
   );

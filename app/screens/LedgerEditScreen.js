@@ -14,7 +14,8 @@ const validationSchema = Yup.object().shape({
 export default function ListingEditScreen({navigation, route}) {
     
     const handleEdit = async (des  , {resetForm}) =>{
-        const id = IdContext._currentValue
+        // console.log(IdContext)
+        // const id = IdContext._currentValue
         const result = await listingsApi.editListings(
                 des,id
         )

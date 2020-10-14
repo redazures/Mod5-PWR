@@ -51,6 +51,7 @@ export default function ListingsScreen({navigation, route}) {
                 renderItem={({item})=>(
                     <PatientCard
                         title={item.name}
+                        id={item.id}
                         subTitle={"Room " + item.ledgers.slice(-1)[0].current_room}
                         //imageUrl={it  em.images[0].url}
                         onPress={()=>navigation.navigate(routes.LISTING_DETAILS,item)}
