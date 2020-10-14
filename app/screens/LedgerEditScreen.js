@@ -13,26 +13,19 @@ const validationSchema = Yup.object().shape({
 
 export default function ListingEditScreen({navigation, route}) {
     
-
-
     const handleEdit = async (des  , {resetForm}) =>{
-        // console.log("this is my ", des)
-        // console.log("this is my context",IdContext._currentValue)
         const id = IdContext._currentValue
         const result = await listingsApi.editListings(
                 des,id
         )
-        console.log(result)
         if (!result.ok) return alert ('Could not save data at this time')
         alert('success')
         resetForm()
         navigation.goBack()
     }
 
-    const {current_room, description, id} = route.params
-    console.log(current_room, description, id)
+    const {description} = route.params
     const IdContext = React.createContext(id);
-    // console.log(IdContext)
     return (
         <Screen style={styles.container}>
             <IdContext.Provider value={id}>
@@ -41,14 +34,14 @@ export default function ListingEditScreen({navigation, route}) {
                     onSubmit={handleEdit}
                     validationSchema={validationSchema}
                 >
-                <FormField
-                    maxLength={255}
-                    multiline
-                    name="description"
-                    numberOfLines={3}
-                    placeholder="Description"
-                />
-                <SubmitButton title="Update Ledger" />
+                    <FormField
+                        maxLength={255}
+                        multiline
+                        name="description"
+                        numberOfLines={3}
+                        placeholder="Description"
+                    />
+                    <SubmitButton title="Update Ledger" />
                 </Form>
             </IdContext.Provider>
         </Screen>

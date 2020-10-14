@@ -17,20 +17,11 @@ function ListingDetailsScreen({ navigation, route }) {
     const listing = route.params;
     const [data, setData] = useState(listing.ledgers)
     
-    // const [removedItems, setRemovedItems] = useState([])
-    // // console.log(logs)
-
-    // const filterlogs=()=>{
-    //     let logs = listing.ledgers
-    //     return logs
-    // }
-
-    // console.log("render details screen", removedItems)
 
     const handleDelete = (log)=>{
         console.log("what what",log,data)
-
-        const result = listingsApi.deleteListings(log)
+    
+        //const result = listingsApi.deleteListings(log)
     }
 
 
@@ -38,9 +29,9 @@ function ListingDetailsScreen({ navigation, route }) {
         <ListItem
             title={item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0]}
             subTitle={item.description}
-            logo='chevron-left'
+            logo='arrow-left-bold'
+            color={colors.danger}
             onPress={()=>{
-                // console.log("onpress action",item)
                 navigation.navigate(routes.LEDGER_EDIT,item)
             }}
             renderRightActions={()=>
@@ -54,6 +45,8 @@ return (
                 <ListItem
                     title={listing.name + " P#:" +listing.hospital_patient_id}
                     subTitle={listing.users[0].title+" "+listing.users[0].name}
+                    logo='book'
+                    color={colors.highlight}
                 />
             </View>
             <FlatList

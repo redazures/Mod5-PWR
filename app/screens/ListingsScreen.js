@@ -20,7 +20,6 @@ export default function ListingsScreen({navigation, route}) {
 
     useEffect(()=>{
         getListingsApi.request()
-        // console.log("I am in my use effect")
     }, [route])
 
     const searchUpdated=()=>{
@@ -31,7 +30,6 @@ export default function ListingsScreen({navigation, route}) {
         setSearchTerm(term)
     }
     
-    // console.log(searchUpdated().length)
     return (
         <Screen style={styles.screen}>
             {getListingsApi.error && <>

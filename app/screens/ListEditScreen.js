@@ -31,7 +31,7 @@ export default function ListingEditScreen({navigation, route}) {
     return (
         <Screen style={styles.container}>
             <Form
-                initialValues={{ title: "", price: "", description: "", category: "", images:[]}}
+                initialValues={{ title: "", price: "", description: "", category: ""}}
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >

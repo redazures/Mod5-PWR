@@ -7,7 +7,7 @@ import BodyText from "../BodyText";
 import colors from "../../config/colors";
 
 
-export default function ListItems({ title, subTitle, image, IconComponent,onPress, renderRightActions,renderLeftActions, logo="chevron-right" }) {
+export default function ListItems({ title, subTitle, image, IconComponent,onPress, renderRightActions,renderLeftActions, logo="chevron-right",color }) {
   return (
         <Swipeable renderRightActions={renderRightActions} renderLeftActions={renderLeftActions}>
             <TouchableHighlight
@@ -21,7 +21,7 @@ export default function ListItems({ title, subTitle, image, IconComponent,onPres
                       {subTitle && <BodyText style={styles.subTitle} >{subTitle}</BodyText>}
                     </View>
                     <MaterialCommunityIcons 
-                      color={colors.medium}
+                      color={color}
                       name={logo}
                       size={25}/>
                 </View>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     borderRadius: 35,
   },
   subTitle: {
-    color: colors.medium,
+    color: colors.black,
   },
   title: {
     fontWeight: "700",
