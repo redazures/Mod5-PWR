@@ -43,7 +43,7 @@ export default function ListingsScreen({navigation, route}) {
             <TextInput 
                 onChangeText={searchHandler} 
                 style={styles.searchInput}
-                placeholder="Type a message to search"
+                placeholder="Type A Name To search"
             />
             <FlatList
                 data={searchUpdated(searchTerm)}

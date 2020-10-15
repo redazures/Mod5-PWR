@@ -17,26 +17,23 @@ import { AppForm as Form, AppFormField as FormField, AppFormPicker as Picker, Su
 
   
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required().min(1).label("Name"),
     room: Yup.number().required().min(1).max(999).label("Room"),
+    description: Yup.string().required().min(1).label("Description"),
 });
 
 
 function ListingDetailsScreen({ navigation, route }) {
     const listing = route.params;
-    const [data, setData] = useState(listing.ledgers)
+    const [data, setData] = useState(listing.ledgers.sort((a,b)=>{return b.id-a.id}))
     const [addLog,setAddLog] =useState(false)
 
     const handleDelete = (log)=>{
-        // console.log("what what",log,data.length)
         const newArray= data.filter(el=>el.id!==log.id)
-        // console.log(newArray.length)
         setData(newArray)
         const result = listingsApi.deleteListings(log)
     }
 
     const editLedgerHandler= async (des,id)=>{ // console.log(foundObj)//console.log(newArray)
-        // console.log("edit handler button is working",des,id)
         const foundObj= data.find(el=>el.id===id)
         foundObj.description=des
         let newArray = data.map(el=>el.id===id ? foundObj : el)
@@ -44,12 +41,10 @@ function ListingDetailsScreen({ navigation, route }) {
         const result = await listingsApi.editListings(
             des,id
         )
-        // if (!result.ok) return alert ('Could not save data at this time')
-        // alert('success')
     }
 
-    const addLedgerHandler=(room,des,id)=>{
-        console.log("add handler button is working", des, room, id)
+    const addLedgerHandler=(des,form)=>{
+        console.log("add handler button is working", des)
     }
 
     const renderItem = ({ item }) => (
@@ -83,8 +78,8 @@ return (
                 />
                 {addLog ? 
                     <Form
-                        initialValues={{ title: "", price: "", description: ""}}
-                        onSubmit={()=>console.log("inside form of details screen")}
+                        initialValues={{room: "", description: "",id:listing.id}}
+                        onSubmit={addLedgerHandler}
                         validationSchema={validationSchema}
                     >
                         <FormField

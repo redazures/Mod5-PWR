@@ -11,8 +11,6 @@ const addListings = (listing, onUploadProgress) =>{
     patient.append('name',listing.name)
     patient.append('room',listing.room)
     patient.append('description',listing.description)
-
-    //console.log("this is my client", patient, client.post(endpoint)) 
     return client.post(endpoint, patient, {
         onUploadProgress:(progress)=>
             onUploadProgress(progress.loaded/progress.total)
@@ -20,16 +18,11 @@ const addListings = (listing, onUploadProgress) =>{
 }
 
 const deleteListings=(item)=>{
-    
     const deleteLink = endpointLedger+item.id
-    // console.log(deleteLink)
-    // console.log(client.delete(deleteLink))
     return client.delete(deleteLink)
 }
 
 const editListings=(des,id)=>{
-    // console.log("api",des,id)
-    // console.log(endpointLedger+id)
     return client.patch(endpointLedger+id,{description: des})
 }
 

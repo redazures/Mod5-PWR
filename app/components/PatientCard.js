@@ -37,10 +37,11 @@ const styles = StyleSheet.create({
       height:100,
   },
   subTitle:{
-    color:colors.secondary,
-    fontWeight:'bold',
+    color:colors.dark,
   },
   title:{
     marginBottom:7,
+    color:colors.secondary,
+    fontWeight:'bold',
   },
 });

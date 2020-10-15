@@ -36,7 +36,7 @@ export default function ListItems({ title, subTitle, id, renderRightActions,rend
                       <BodyText style={styles.title} numberOfLines={1}>{title}</BodyText>
                       {addChangeLedger ? 
                         <Form
-                            initialValues={{description:""}}
+                            initialValues={{description:subTitle}}
                             onSubmit={editSubmitHandler}
                             validationSchema={validationSchema}
                         >
