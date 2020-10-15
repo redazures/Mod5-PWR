@@ -43,26 +43,31 @@ function ListingDetailsScreen({ navigation, route }) {
         )
     }
 
-    const addLedgerHandler=(des,form)=>{
-        console.log("add handler button is working", des)
+    const addLedgerHandler= async (des,form)=>{
+        // console.log("add handler button is working", des)
+        const newledge=des
+        const patientId=des.id
+        newledge.id=data[0].id+100
+        const newArray = [newledge,...data]
+        setData(newArray)
+        const result = await listingsApi.addLedger(des,patientId)
     }
 
     const renderItem = ({ item }) => (
         <PatientLedgers
-            title={item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0]}
+            title={item.created_at ? item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0] : "newly added"}
             subTitle={item.description}
             id={item.id}
             logo='arrow-left-bold'
             color={colors.danger}
             editLedgerHandler={editLedgerHandler}
             renderRightActions={()=>
-                <ListItemDeleteAction onPress={()=>handleDelete(item)}/>
+                <ListItemDeleteAction onPress={()=>{item.created_at ? handleDelete(item) : null}}/>
                 }
         />
       )
 
-      const ShowAddLedger=()=>{
-        console.log(addLog)
+      const ShowAddLedger=()=>{// console.log(addLog)
         setAddLog(!addLog)
       }
 
