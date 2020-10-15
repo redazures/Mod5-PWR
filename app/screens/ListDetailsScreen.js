@@ -12,10 +12,9 @@ import listingsApi from '../api/listings'
 import routes from "../components/navigation/routes";
 import PatientLedgers from "../components/PatientLedgers"
 
+
 import { AppForm as Form, AppFormField as FormField, AppFormPicker as Picker, SubmitButton } from "../components/forms";
 
-
-  
 const validationSchema = Yup.object().shape({
     room: Yup.number().required().min(1).max(999).label("Room"),
     description: Yup.string().required().min(1).label("Description"),
@@ -137,6 +136,8 @@ const styles = StyleSheet.create({
     },
     userContainer: {
         marginVertical: 40,
+        backgroundColor:colors.secondary,
+        borderRadius:15,
     },
 });
 

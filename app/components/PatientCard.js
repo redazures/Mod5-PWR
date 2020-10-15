@@ -22,9 +22,9 @@ export default function PatientCard({ title, subTitle, imageUrl, onPress}) {
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 15,
-    backgroundColor:colors.white,
-    marginBottom: 20,
+    borderRadius: 10,
+    backgroundColor:colors.secondary,
+    marginBottom: 15,
     overflow:'hidden',
     flexDirection:"row",
     flex:.5,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   title:{
     marginBottom:7,
-    color:colors.secondary,
+    color:colors.white,
     fontWeight:'bold',
   },
 });

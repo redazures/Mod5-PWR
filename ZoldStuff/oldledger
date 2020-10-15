@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { StyleSheet, View, Image, TouchableHighlight,Text} from "react-native";
+import { StyleSheet, View, Image, TouchableHighlight,} from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
@@ -26,47 +26,32 @@ export default function ListItems({ title, subTitle, id, renderRightActions,rend
     setAddChangeLedger(false)
   }
 
-
   return (
-    <>
-      {addChangeLedger ? 
-      <TouchableHighlight
-        underlayColor={colors.light}
-        onPress={showChangeLedger}>
-        <View style={styles.container}>
-            <View style={styles.detailsContainer}>
-              <BodyText style={styles.title} numberOfLines={1}>{title}</BodyText>
-                    <Form
-                        initialValues={{description:subTitle}}
-                        onSubmit={editSubmitHandler}
-                        validationSchema={validationSchema}
-                    >
-                        <View style={styles.container}>
-                        <FormField
-                            maxLength={255}
-                            multiline
-                            name="description"
-                            numberOfLines={3}
-                            placeholder="Description"
-                            width="90%"
-                        />
-                        <View width='9%' paddingLeft={5}>
-                          <SubmitButton title="S"/>
-                        </View>
-                      </View>
-                    </Form>
-              </View>
-        </View>
-      </TouchableHighlight>
-                        :
-        <Swipeable renderRightActions={renderRightActions}>
+        <Swipeable renderRightActions={addChangeLedger ? null : renderRightActions} renderLeftActions={renderLeftActions}>
             <TouchableHighlight
                 underlayColor={colors.light}
                 onPress={showChangeLedger}>
                 <View style={styles.container}>
                     <View style={styles.detailsContainer}>
                       <BodyText style={styles.title} numberOfLines={1}>{title}</BodyText>
+                      {addChangeLedger ? 
+                        <Form
+                            initialValues={{description:subTitle}}
+                            onSubmit={editSubmitHandler}
+                            validationSchema={validationSchema}
+                        >
+                            <FormField
+                                maxLength={255}
+                                multiline
+                                name="description"
+                                numberOfLines={3}
+                                placeholder="Description"
+                            />
+                            <SubmitButton title="Update Ledger" />
+                        </Form>
+                      :
                        <BodyText style={styles.subTitle} >{subTitle}</BodyText>
+                       }
                     </View>
                     <MaterialCommunityIcons 
                       color={color}
@@ -75,8 +60,6 @@ export default function ListItems({ title, subTitle, id, renderRightActions,rend
                 </View>
             </TouchableHighlight>
         </Swipeable>
-      }
-    </>
   );
 }
 
@@ -85,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     flexDirection: "row",
     padding: 10,
-    backgroundColor:colors.secondary
+    backgroundColor:colors.white
   },
   detailsContainer: {
     marginLeft:10,
