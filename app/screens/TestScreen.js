@@ -19,7 +19,7 @@ export default function ListingEditScreen() {
 
     const handleSubmit = async (obj) =>{
         // console.log(obj)
-        const result = await listingsApi.test({...obj})
+        const result = await listingsApi.addPatient({...obj})
         // if (!result.ok) return alert ('Could not save data at this time')
         // alert('success')
     }

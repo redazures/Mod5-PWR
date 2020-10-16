@@ -12,8 +12,9 @@ const validationSchema = Yup.object().shape({
   description: Yup.string().required().min(1).label("Description"),
 });
 
-export default function ListItems({ title, subTitle, id, renderRightActions,renderLeftActions, logo="chevron-right",color, editLedgerHandler }) {
+export default function ListItems({ title, subTitle, id, created_at, updated_at, renderRightActions,renderLeftActions, logo="chevron-right",color, editLedgerHandler }) {
   const [addChangeLedger,setAddChangeLedger] =useState(false)
+  const edited = created_at===updated_at
     
   const showChangeLedger=()=>{ // console.log(addChangeLedger)
     setAddChangeLedger(!addChangeLedger)
@@ -26,7 +27,7 @@ export default function ListItems({ title, subTitle, id, renderRightActions,rend
     setAddChangeLedger(false)
   }
 
-
+  console.log(created_at, updated_at, edited)
   return (
     <>
       {addChangeLedger ? 
@@ -66,7 +67,7 @@ export default function ListItems({ title, subTitle, id, renderRightActions,rend
                 <View style={styles.container}>
                     <View style={styles.detailsContainer}>
                       <BodyText style={styles.title} numberOfLines={1}>{title}</BodyText>
-                       <BodyText style={styles.subTitle} >{subTitle}</BodyText>
+                       <BodyText style={styles.subTitle} >{!edited ? subTitle+" *EDITED*":subTitle}</BodyText>
                     </View>
                     <MaterialCommunityIcons 
                       color={color}

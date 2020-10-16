@@ -34,7 +34,7 @@ function ListingDetailsScreen({ navigation, route }) {
 
     const editLedgerHandler= async (des,id)=>{ // console.log(foundObj)//console.log(newArray)
         const foundObj= data.find(el=>el.id===id)
-        foundObj.description=des
+        foundObj.description=des+"*edited*"
         let newArray = data.map(el=>el.id===id ? foundObj : el)
         setData(newArray)
         const result = await listingsApi.editListings(
@@ -57,6 +57,8 @@ function ListingDetailsScreen({ navigation, route }) {
             title={item.created_at ? item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0] : "newly added"}
             subTitle={item.description}
             id={item.id}
+            created_at={item.created_at}
+            updated_at={item.updated_at}
             logo='arrow-left-bold'
             color={colors.danger}
             editLedgerHandler={editLedgerHandler}
@@ -75,7 +77,7 @@ return (
             <View style={styles.userContainer}>
                 <ListItem
                     title={listing.name + " P#:" +listing.hospital_patient_id}
-                    subTitle={listing.users[0].title+" "+listing.users[0].name}
+                    subTitle={listing.main_practitioner+" "+listing.main_practitioner_title}
                     logo='book'
                     color={colors.highlight}
                     onPress={ShowAddLedger}
