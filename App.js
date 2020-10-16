@@ -38,7 +38,7 @@ export default function App() {
   console.log("render")
   return (
     <NavigationContainer theme={NavigationTheme}>
-      <TestScreen/>
+      <AppNavigator/>
     </NavigationContainer>
   );
 }
@@ -46,3 +46,7 @@ export default function App() {
 {/* <NavigationContainer theme={NavigationTheme}>
       <AppNavigator/>
     </NavigationContainer> */}
+
+    // <NavigationContainer theme={NavigationTheme}>
+    //   <TestScreen/>
+    // </NavigationContainer>
