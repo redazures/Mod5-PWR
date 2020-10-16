@@ -48,16 +48,19 @@ const addLedger = (des, id) =>{
 const addPatient = async (obj)=>{
     // console.log(obj)
     const data = new FormData()
-    data.append('title',obj.title)
+    data.append('name',obj.name)
     data.append('room',obj.room)
+    data.append('hospital_patient_id',obj.patient_id)
     data.append('description',obj.description)
-    obj.images.forEach((image,index)=>data.append('images',{
+    data.append('current',true)
+    obj.images.forEach((image,index)=>
+        data.append('images[]',{
         name: 'image'+index,
         type: 'image/jpeg',
         uri: image,
     }))
-    console.log(data)
-    // return client.post(endpointLedger, data)
+    // console.log(data)
+    return client.post(endpoint, data)
 }
 
 export default {
