@@ -33,17 +33,17 @@ export default function ListingEditScreen() {
     return (
         <Screen style={styles.container}>
             <Form
-                initialValues={{ name: "", room: "", description: "", images:[]}}
-                onSubmit={handleSubmit}
+                initialValues={{ title: "", price: "", description: "", category: "", images:[]}}
+                onSubmit={(values) => console.log(values)}
                 validationSchema={validationSchema}
             >
             <FormImagePicker name='images'/>
-            <FormField maxLength={255} name="name" placeholder="Name" />
+            <FormField maxLength={255} name="title" placeholder="Title" />
             <FormField
                 keyboardType="numeric"
                 maxLength={8}
-                name="room"
-                placeholder="Room"
+                name="price"
+                placeholder="Price"
                 //width={120}
             />
             <FormField
@@ -53,7 +53,7 @@ export default function ListingEditScreen() {
                 numberOfLines={3}
                 placeholder="Description"
             />
-            <SubmitButton name="Post" />
+            <SubmitButton title="Post" />
             </Form>
         </Screen>
     );
