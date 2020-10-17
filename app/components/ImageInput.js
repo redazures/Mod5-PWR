@@ -26,6 +26,7 @@ export default function ImageInput({ imageUri, onChangeImage }) {
         ])
     }
 
+    // console.log(imageUri)
     const selectImage= async ()=>{
         try {
           const result = await ImagePicker.launchImageLibraryAsync({

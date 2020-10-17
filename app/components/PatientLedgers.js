@@ -7,14 +7,13 @@ import BodyText from "./BodyText";
 import colors from "../config/colors";
 import * as Yup from "yup";
 import { AppForm as Form, AppFormField as FormField, AppFormPicker as Picker, SubmitButton } from "../components/forms";
-
+import DisplayImages from '../components/DisplayImages'
 const validationSchema = Yup.object().shape({
   description: Yup.string().required().min(1).label("Description"),
 });
 
-export default function ListItems({ title, subTitle, id, created_at, updated_at, renderRightActions,renderLeftActions, logo="chevron-right",color, editLedgerHandler }) {
+export default function ListItems({ title, subTitle, id, edited, imageUris, renderRightActions,renderLeftActions, logo="chevron-right",color, editLedgerHandler }) {
   const [addChangeLedger,setAddChangeLedger] =useState(false)
-  const edited = created_at===updated_at
     
   const showChangeLedger=()=>{ // console.log(addChangeLedger)
     setAddChangeLedger(!addChangeLedger)
@@ -27,7 +26,7 @@ export default function ListItems({ title, subTitle, id, created_at, updated_at,
     setAddChangeLedger(false)
   }
 
-  console.log(created_at, updated_at, edited)
+  // console.log("http://127.0.0.1:3000"+imageUris[0])
   return (
     <>
       {addChangeLedger ? 
@@ -67,7 +66,11 @@ export default function ListItems({ title, subTitle, id, created_at, updated_at,
                 <View style={styles.container}>
                     <View style={styles.detailsContainer}>
                       <BodyText style={styles.title} numberOfLines={1}>{title}</BodyText>
-                       <BodyText style={styles.subTitle} >{!edited ? subTitle+" *EDITED*":subTitle}</BodyText>
+                       <BodyText style={styles.subTitle} >{edited ? subTitle+" *EDITED*":subTitle}</BodyText>
+                       <DisplayImages 
+                          imageUris={imageUris}
+                          // onAddImage={handleAdd}
+                        />
                     </View>
                     <MaterialCommunityIcons 
                       color={color}
@@ -86,7 +89,8 @@ const styles = StyleSheet.create({
     alignItems:'center',
     flexDirection: "row",
     padding: 10,
-    backgroundColor:colors.secondary
+    backgroundColor:colors.secondary,
+    borderRadius:15
   },
   detailsContainer: {
     marginLeft:10,

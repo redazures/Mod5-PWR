@@ -45,7 +45,7 @@ export default function AccountScreen({navigation}) {
           <ListItems
             title={item.title} 
             IconComponent={
-                <Icon name={item.icon.name} backgroundColor={colors.white}/>
+                <Icon name={item.icon.name} backgroundColor={colors.primary}/>
             }
             onPress={ ()=>{
               item.targetScreen ? console.log("this is item", item.targetScreen) : null

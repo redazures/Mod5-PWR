@@ -57,8 +57,8 @@ function ListingDetailsScreen({ navigation, route }) {
             title={item.created_at ? item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0] : "newly added"}
             subTitle={item.description}
             id={item.id}
-            created_at={item.created_at}
-            updated_at={item.updated_at}
+            edited={item.edited}
+            imageUris={item.array_of_images}
             logo='arrow-left-bold'
             color={colors.danger}
             editLedgerHandler={editLedgerHandler}
@@ -71,7 +71,7 @@ function ListingDetailsScreen({ navigation, route }) {
       const ShowAddLedger=()=>{// console.log(addLog)
         setAddLog(!addLog)
       }
-
+// console.log(route.params.ledgers[0].array_of_images)
 return (
         <Screen View style={styles.detailsContainer}>
             <View style={styles.userContainer}>
