@@ -7,14 +7,6 @@ const endpoint2 = '/listings'
 
 const getListings = () => client.get(endpoint)
 
-const resizeFile = (file) => new Promise(resolve => {
-    Resizer.imageFileResizer(file, 300, 300, 'JPEG', 100, 0,
-    uri => {
-      resolve(uri);
-    },
-    'base64'
-    );
-});
 
 const addListings = (listing, onUploadProgress) =>{
     const patient = new FormData()
@@ -27,20 +19,28 @@ const addListings = (listing, onUploadProgress) =>{
     })
 }
 
-const deleteListings=(item)=>{
+const deleteLedger=(item)=>{
     const deleteLink = endpointLedger+item.id
     return client.delete(deleteLink)
 }
 
-const editListings=(des,id)=>{
+const editLedger=(des,id)=>{
+    console.log(des,id)
     return client.patch(endpointLedger+id,{description: des})
 }
 
-const addLedger = (des, id) =>{
+const addLedger = (des, id) =>{ 
+    // console.log(des,id)
     const ledger = new FormData()
     ledger.append('patient_id',id)
     ledger.append('current_room',des.room)
     ledger.append('description',des.description)
+    des.images.forEach((image,index)=>
+    ledger.append('images[]',{
+        name: 'image'+index,
+        type: 'image/jpeg',
+        uri: image,
+    }))
     // console.log(ledger)
     return client.post(endpointLedger, ledger)
 }
@@ -66,8 +66,8 @@ const addPatient = async (obj)=>{
 export default {
     addListings,
     getListings,
-    deleteListings,
-    editListings,
+    deleteLedger,
+    editLedger,
     addLedger,
     addPatient,
 }

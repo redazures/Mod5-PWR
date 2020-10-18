@@ -5,14 +5,14 @@ import ImageInput from './ImageInput'
 export default function DisplayImages({ imageUris=[], onRemoveImage, onAddImage }) {
     const scrollView = useRef()
     
-    console.log(imageUris[0])
+    // console.log(imageUris[0])
     return (
         <View>
             <ScrollView 
                 ref={scrollView} 
                 horizontal 
                 onContentSizeChange={()=>scrollView.current.scrollToEnd()}
-                >
+            >
                 <View style={styles.container} >
                     {imageUris && imageUris.map(uri=>(
                         <View 

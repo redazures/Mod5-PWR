@@ -12,9 +12,10 @@ const validationSchema = Yup.object().shape({
   description: Yup.string().required().min(1).label("Description"),
 });
 
-export default function ListItems({ title, subTitle, id, edited, imageUris, renderRightActions,renderLeftActions, logo="chevron-right",color, editLedgerHandler }) {
+export default function ListItems({ title, subTitle, id, edited, imageUris, renderRightActions, logo="chevron-right",color, editLedgerHandler }) {
   const [addChangeLedger,setAddChangeLedger] =useState(false)
-    
+  
+  
   const showChangeLedger=()=>{ // console.log(addChangeLedger)
     setAddChangeLedger(!addChangeLedger)
   }
@@ -26,7 +27,7 @@ export default function ListItems({ title, subTitle, id, edited, imageUris, rend
     setAddChangeLedger(false)
   }
 
-  // console.log(imageUris[0])
+  // console.log(edited)
   return (
     <>
       {addChangeLedger ? 
@@ -59,7 +60,7 @@ export default function ListItems({ title, subTitle, id, edited, imageUris, rend
         </View>
       </TouchableHighlight>
                         :
-        <Swipeable renderRightActions={renderRightActions}>
+        <Swipeable renderRightActions={renderRightActions} >
             <TouchableHighlight
                 underlayColor={colors.light}
                 onPress={showChangeLedger}>

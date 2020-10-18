@@ -13,7 +13,8 @@ import routes from "../components/navigation/routes";
 import PatientLedgers from "../components/PatientLedgers"
 
 
-import { AppForm as Form, AppFormField as FormField, AppFormPicker as Picker, SubmitButton } from "../components/forms";
+import { AppForm as Form, AppFormField as FormField, SubmitButton } from "../components/forms";
+import FormImagePicker from "../components/forms/FormImagePicker";
 
 const validationSchema = Yup.object().shape({
     room: Yup.number().required().min(1).max(999).label("Room"),
@@ -29,7 +30,7 @@ function ListingDetailsScreen({ navigation, route }) {
     const handleDelete = (log)=>{
         const newArray= data.filter(el=>el.id!==log.id)
         setData(newArray)
-        const result = listingsApi.deleteListings(log)
+        const result = listingsApi.deleteLedger(log)
     }
 
     const editLedgerHandler= async (des,id)=>{ // console.log(foundObj)//console.log(newArray)
@@ -37,31 +38,40 @@ function ListingDetailsScreen({ navigation, route }) {
         foundObj.description=des+"*edited*"
         let newArray = data.map(el=>el.id===id ? foundObj : el)
         setData(newArray)
-        const result = await listingsApi.editListings(
+        const result = await listingsApi.editLedger(
             des,id
         )
     }
 
-    const addLedgerHandler= async (des,form)=>{
-        // console.log("add handler button is working", des)
+    const addLedgerHandler= async (des)=>{
+        // console.log("add handler button is working", des,listing.id)
         const newledge=des
-        const patientId=des.id
-        newledge.id=data[0].id+100
-        const newArray = [newledge,...data]
-        setData(newArray)
+        const patientId=listing.id
+        data[0] ? newledge.id=data[0].id+100 : newledge.id=100
+        // const newArray = [newledge,...data]
+        // setData(newArray)
         const result = await listingsApi.addLedger(des,patientId)
+        if (!result.ok) return alert ('Could not save data at this time')
+        console.log(result.data)
+        const newArray = [result.data,...data]
+        setData(newArray)
+        setAddLog(false)
+        alert('success')
     }
+
+ 
 
     const renderItem = ({ item }) => (
         <PatientLedgers
             title={item.created_at ? item.created_at.split("T")[0] + " at " + item.created_at.split("T")[1].split(".")[0] : "newly added"}
             subTitle={item.description}
             id={item.id}
-            edited={item.edited}
+            edited={item.edit}
             imageUris={item.array_of_images}
             logo='arrow-left-bold'
             color={colors.danger}
             editLedgerHandler={editLedgerHandler}
+            // renderLeftActions={imageShowToggle}
             renderRightActions={()=>
                 <ListItemDeleteAction onPress={()=>{item.created_at ? handleDelete(item) : null}}/>
                 }
@@ -71,7 +81,7 @@ function ListingDetailsScreen({ navigation, route }) {
       const ShowAddLedger=()=>{// console.log(addLog)
         setAddLog(!addLog)
       }
-// console.log(route.params.ledgers[0].array_of_images)
+// console.log(listing.id)
 return (
         <Screen View style={styles.detailsContainer}>
             <View style={styles.userContainer}>
@@ -84,10 +94,11 @@ return (
                 />
                 {addLog ? 
                     <Form
-                        initialValues={{room: "", description: "",id:listing.id}}
+                        initialValues={{room: "", description: "",images:[]}}
                         onSubmit={addLedgerHandler}
                         validationSchema={validationSchema}
                     >
+                        <FormImagePicker name='images'/>
                         <FormField
                             keyboardType="numeric"
                             maxLength={8}
