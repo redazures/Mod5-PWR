@@ -26,7 +26,7 @@ export default function ListItems({ title, subTitle, id, edited, imageUris, rend
     setAddChangeLedger(false)
   }
 
-  // console.log("http://127.0.0.1:3000"+imageUris[0])
+  // console.log(imageUris[0])
   return (
     <>
       {addChangeLedger ? 

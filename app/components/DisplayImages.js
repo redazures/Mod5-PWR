@@ -5,7 +5,7 @@ import ImageInput from './ImageInput'
 export default function DisplayImages({ imageUris=[], onRemoveImage, onAddImage }) {
     const scrollView = useRef()
     
-    
+    console.log(imageUris[0])
     return (
         <View>
             <ScrollView 
@@ -14,18 +14,19 @@ export default function DisplayImages({ imageUris=[], onRemoveImage, onAddImage 
                 onContentSizeChange={()=>scrollView.current.scrollToEnd()}
                 >
                 <View style={styles.container} >
-                    {imageUris.map(uri=>(
+                    {imageUris && imageUris.map(uri=>(
                         <View 
                             key={uri}
                             style={styles.image}
                         >     
                         <ImageInput 
-                            imageUri={"http://127.0.0.1:3000"+uri} 
-                            onChangeImage={()=>onRemoveImage(uri)}
+                            imageUri={uri} 
+                            // onChangeImage={()=>onRemoveImage(uri)}
                         />
                 </View>
                         )
                     )}
+                        {/* <ImageInput onChangeImage={uri=>onAddImage(uri)}/> */}
                 </View>
             </ScrollView>
         </View>
