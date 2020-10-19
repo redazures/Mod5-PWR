@@ -10,16 +10,16 @@ import ListItemSeparator from "../components/lists/ListItemSeparator";
 const menuItems = [
     {
         id:1,
-        title: "My Listings",
+        title: "My Patients",
         icon: {
-            name: "format-list-bulleted",
+            name: "account-box-multiple",
             backgroundColor: colors.primary,
         }
     },
     {
         title: "My Messages",
         icon: {
-            name: "email",
+            name: "message-bulleted",
             backgroundColor: colors.secondary,
         },
         targetScreen:"Messages"

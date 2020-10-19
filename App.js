@@ -31,7 +31,7 @@ import {MaterialCommunityIcons} from '@expo/vector-icons'
 import AuthNavigator from "./app/components/navigation/AuthNavigator";
 import NavigationTheme from "./app/components/navigation/NavigationTheme";
 import AppNavigator from "./app/components/navigation/AppNavigator";
-import TestScreen from './app/screens/TestScreen'
+import AudioScreen from './app/screens/AccountScreen'
 
 export default function App() {
 

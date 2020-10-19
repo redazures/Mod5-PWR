@@ -52,7 +52,7 @@ function ListingDetailsScreen({ navigation, route }) {
         // setData(newArray)
         const result = await listingsApi.addLedger(des,patientId)
         if (!result.ok) return alert ('Could not save data at this time')
-        console.log(result.data)
+        // console.log(result.data)
         const newArray = [result.data,...data]
         setData(newArray)
         setAddLog(false)
@@ -71,7 +71,6 @@ function ListingDetailsScreen({ navigation, route }) {
             logo='arrow-left-bold'
             color={colors.danger}
             editLedgerHandler={editLedgerHandler}
-            // renderLeftActions={imageShowToggle}
             renderRightActions={()=>
                 <ListItemDeleteAction onPress={()=>{item.created_at ? handleDelete(item) : null}}/>
                 }
