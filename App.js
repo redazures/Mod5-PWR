@@ -32,16 +32,30 @@ import AuthNavigator from "./app/components/navigation/AuthNavigator";
 import NavigationTheme from "./app/components/navigation/NavigationTheme";
 import AppNavigator from "./app/components/navigation/AppNavigator";
 import AudioScreen from './app/screens/AccountScreen'
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default function App() {
 
+  const demo = async () =>{
+    try{
+      await AsyncStorage.setItem('person',JSON.stringify({id:1}))
+      const value = await AsyncStorage.getItem('person')
+      const person =JSON.parse(value)
+      console.log(person)
+    }catch (error){
+      console.log(error)
+    }
+  }
+  demo()
   console.log("render")
   return (
     <NavigationContainer theme={NavigationTheme}>
-      <AppNavigator/>
+      <AuthNavigator/>
     </NavigationContainer>
-  );
+  )
 }
+
+
 
 {/* <NavigationContainer theme={NavigationTheme}>
       <AppNavigator/>
@@ -50,3 +64,4 @@ export default function App() {
     // <NavigationContainer theme={NavigationTheme}>
     //   <TestScreen/>
     // </NavigationContainer>
+
