@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
-import SearchInput, { createFilter } from 'react-native-search-filter';
+import React, { useEffect, useState, useContext  } from 'react'
+import { ActivityIndicator, FlatList, StyleSheet, TextInput } from 'react-native'
 
 import routes from '../components/navigation/routes'
 import PatientCard from '../components/PatientCard'
@@ -10,16 +9,16 @@ import listingsApi from '../api/listings'
 import BodyText from '../components/BodyText'
 import AppButton from '../components/Button'
 import useApi from '../components/hooks/useApi'
-
-
+import AuthContext from '../auth/context'
 
 export default function ListingsScreen({navigation, route}) {
+    const authContext = useContext(AuthContext)
     const [refreshing, setRefreshing] = useState(false)
-    const getListingsApi = useApi(listingsApi.getListings)
+    const getListingsApi = useApi(listingsApi.getData)
     const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(()=>{
-        getListingsApi.request()
+        getListingsApi.request(authContext.user)
     }, [route])
 
     const searchUpdated=()=>{
@@ -58,7 +57,7 @@ export default function ListingsScreen({navigation, route}) {
                     />
                 )}
                 refreshing={refreshing}
-                onRefresh={()=>getListingsApi.request()}
+                onRefresh={()=>getListingsApi.request(authContext.user)}
             />
         </Screen>
     )

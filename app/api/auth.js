@@ -1,6 +1,14 @@
 import client from './client'
 
-const login = (email,password)=>client.post('/login',{email,password})
+const login = (email,password)=>{
+    console.log("getting logins from my cousin greg", email, password)
+    // const user_login_params={
+    //     email:email,
+    //     password:password
+    // }
+    return client.post('/login',{email,password})
+}
+
 
 const signup = (name, title, email, password, employee_id)=>{
     // const user = new FormData()

@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import * as Yup from 'yup'
 
 import Screen from '../components/Screen'
 import { AppForm, AppFormField, SubmitButton, ErrorMessage } from "../components/forms";
 import authApi from '../api/auth'
+import AuthContext from '../auth/context'
 
 const validationSchema=Yup.object().shape({
     email:Yup.string().required().email().label("Email"),
@@ -16,15 +17,18 @@ const validationSchema=Yup.object().shape({
 
 export default function RegisterScreen() {
     // console.log("this is the register screen")
+    const authContext = useContext(AuthContext)
     const[signUpFailed, setSignUpFailed] =useState(false)
-
-    const handleSignupSubmit= async ({name, title, email, password, employee_id})=>{
-        console.log("this is the form tapping",name, title, email, password, employee_id)
+    
+    const handleSignupSubmit= async ({name, title, email, password, employee_id})=>{// console.log("this is the form tapping",name, title, email, password, employee_id)
         const result = await authApi.signup(name, title, email, password, employee_id)
-        // if (!result.ok) return setSignUpFailed(true)
-        // setSignUpFailed(false)
-        // console.log(result.data)
+        if (!result.ok) return setSignUpFailed(true)
+        setSignUpFailed(false)
+        // const user = jwtDecode(result.data.jwt)
+        authContext.setUser(result.data.jwt)
     }
+
+    
 
     return (
         <Screen style={styles.container}>

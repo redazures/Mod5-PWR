@@ -33,25 +33,20 @@ import NavigationTheme from "./app/components/navigation/NavigationTheme";
 import AppNavigator from "./app/components/navigation/AppNavigator";
 import AudioScreen from './app/screens/AccountScreen'
 import AsyncStorage from "@react-native-community/async-storage";
+import AuthContext from "./app/auth/context";
 
 export default function App() {
+  const [user, setUser] = useState()
 
-  const demo = async () =>{
-    try{
-      await AsyncStorage.setItem('person',JSON.stringify({id:1}))
-      const value = await AsyncStorage.getItem('person')
-      const person =JSON.parse(value)
-      console.log(person)
-    }catch (error){
-      console.log(error)
-    }
-  }
-  demo()
+
   console.log("render")
+  console.log(user)
   return (
-    <NavigationContainer theme={NavigationTheme}>
-      <AuthNavigator/>
-    </NavigationContainer>
+    <AuthContext.Provider value={{user,setUser}}>
+        <NavigationContainer theme={NavigationTheme}>
+          {user ? <AppNavigator/> :<AuthNavigator/>}
+        </NavigationContainer>
+    </AuthContext.Provider>
   )
 }
 
@@ -65,3 +60,14 @@ export default function App() {
     //   <TestScreen/>
     // </NavigationContainer>
 
+    // const demo = async () =>{
+    //   try{
+    //     await AsyncStorage.setItem('person',JSON.stringify({id:1}))
+    //     const value = await AsyncStorage.getItem('person')
+    //     const person =JSON.parse(value)
+    //     console.log(person)
+    //   }catch (error){
+    //     console.log(error)
+    //   }
+    // }
+    // demo()

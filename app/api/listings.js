@@ -1,21 +1,20 @@
+import React, { useEffect, useState, useContext  } from 'react'
 import client from './client';
 import Resizer from 'react-image-file-resizer';
+import AuthContext from '../auth/context'
+
 
 const endpoint = 'patients';
 const endpointLedger = 'ledgers/'
 const endpoint2 = '/listings'
 
-const getListings = () => client.get(endpoint)
 
-
-const addListings = (listing, onUploadProgress) =>{
-    const patient = new FormData()
-    patient.append('name',listing.name)
-    patient.append('room',listing.room)
-    patient.append('description',listing.description)
-    return client.post(endpoint, patient, {
-        onUploadProgress:(progress)=>
-            onUploadProgress(progress.loaded/progress.total)
+const getData = (token) => {
+    // console.log("this is my listings api", token)
+    return client.get(endpoint,{
+        headers:{
+            Authorization:`bearer ${token}`
+        }
     })
 }
 
@@ -64,8 +63,7 @@ const addPatient = async (obj)=>{
 }
 
 export default {
-    addListings,
-    getListings,
+    getData,
     deleteLedger,
     editLedger,
     addLedger,

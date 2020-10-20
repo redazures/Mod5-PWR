@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
@@ -7,6 +7,7 @@ import FormImagePicker from "../components/forms/FormImagePicker";
 import Screen from "../components/Screen";
 import listingsApi from '../api/listings'
 import routes from '../components/navigation/routes'
+import AuthContext from '../auth/context'
 //import useLocation from "../components/hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
@@ -19,9 +20,10 @@ const validationSchema = Yup.object().shape({
 
 export default function ListingEditScreen({navigation}) {
     //const location = useLocation()
+    const authContext = useContext(AuthContext)
 
     const handleSubmit = async (obj,{resetForm}) =>{
-        const result = await listingsApi.addPatient({...obj})
+        const result = await listingsApi.addPatient({...obj,authContext})
         if (!result.ok) return alert ('Could not save data at this time')
         alert('success')
         resetForm()
