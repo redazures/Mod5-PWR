@@ -2,11 +2,14 @@ import React, { useEffect, useState, useContext  } from 'react'
 import client from './client';
 import Resizer from 'react-image-file-resizer';
 import AuthContext from '../auth/context'
+import jwtDecode from 'jwt-decode'
+
 
 
 const endpoint = 'patients';
 const endpointLedger = 'ledgers/'
 const endpoint2 = '/listings'
+const endpointMessages = 'users/'
 
 
 const getData = (token) => {
@@ -16,6 +19,16 @@ const getData = (token) => {
             Authorization:`bearer ${token}`
         }
     })
+}
+
+const getMessages = (user,token) => {
+    // console.log("this is my items in my api/listing", user,token)
+    return client.get(endpointMessages+user,{
+        headers:{
+            Authorization:`bearer ${token}`
+        }
+    })
+    // return null
 }
 
 const deleteLedger=(item)=>{
@@ -68,4 +81,5 @@ export default {
     editLedger,
     addLedger,
     addPatient,
+    getMessages,
 }

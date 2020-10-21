@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 import { FlatList, StyleSheet, View} from 'react-native';
 
 
@@ -7,6 +7,10 @@ import ListItems from '../components/lists/ListItems';
 import ListItemSeparator from '../components/lists/ListItemSeparator';
 import Screen from '../components/Screen'
 import ListItemDeleteAction from '../components/lists/ListItemDeleteAction';
+import AuthContext from '../auth/context';
+import useApi from '../components/hooks/useApi';
+import listingsApi from '../api/listings';
+import jwtDecode from 'jwt-decode'
 
 const Initialmessages = [
   {
@@ -32,6 +36,17 @@ const Initialmessages = [
 const MessagesScreen = (props) => {
   const [messages, setMessages] = useState(Initialmessages)
   const [refreshing, setRefreshing] = useState(false)
+  const authContext = useContext(AuthContext)
+  const getListingApi=useApi(listingsApi.getMessages)
+  const user = jwtDecode(authContext.user)
+  const token = authContext.user
+
+
+
+  useEffect(()=>{
+    // console.log("this is in my use effect",user,token)
+    getListingApi.request(user.user_id,token)
+  },[])
   
   const handleDelete = message =>{
     console.log("deleting messages")
@@ -40,19 +55,20 @@ const MessagesScreen = (props) => {
     setMessages(messages.filter(m => m.id!==message.id))
   }
 
-  console.log("this is my messages")
+  const messageHandler=()=>{
+    return getListingApi.data ? getListingApi.data.all_messages : messages
+  }
+
+  // console.log("this is my messages",getListingApi.data)
   return (
     <Screen>
       <FlatList
-        data={messages}
-        keyExtractor={item => item.id.toString()}
+        data={messageHandler()}
+        keyExtractor={item => item.correspondent.id.toString()}
         renderItem={({ item }) => (
           <ListItems
-            title={item.title} 
-            subTitle={item.description}
-            image={item.image}
+            title={item.correspondent.name} 
             onPress={()=>console.log("Message selected",item)}
-            renderRightActions={()=><ListItemDeleteAction onPress={()=>handleDelete(item)}/>}
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
