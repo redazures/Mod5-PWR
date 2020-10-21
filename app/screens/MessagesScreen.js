@@ -12,6 +12,7 @@ import useApi from '../components/hooks/useApi';
 import listingsApi from '../api/listings';
 import jwtDecode from 'jwt-decode'
 import routes from '../components/navigation/routes'
+import { useIsFocused } from '@react-navigation/native';
 
 
 const Initialmessages = [
@@ -42,13 +43,14 @@ const MessagesScreen = ({navigation,route}) => {
   const getListingApi=useApi(listingsApi.getMessages)
   const user = jwtDecode(authContext.user)
   const token = authContext.user
+  const isFocused  = useIsFocused()
 
 
 
   useEffect(()=>{
     // console.log("this is in my use effect",user,token)
     getListingApi.request(user.user_id,token)
-  },[])
+  },[isFocused])
   
   const handleDelete = message =>{
     console.log("deleting messages")

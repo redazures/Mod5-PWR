@@ -10,16 +10,18 @@ import BodyText from '../components/BodyText'
 import AppButton from '../components/Button'
 import useApi from '../components/hooks/useApi'
 import AuthContext from '../auth/context'
+import { useIsFocused } from '@react-navigation/native'
 
 export default function ListingsScreen({navigation, route}) {
     const authContext = useContext(AuthContext)
     const [refreshing, setRefreshing] = useState(false)
     const getListingsApi = useApi(listingsApi.getData)
     const [searchTerm, setSearchTerm] = useState("")
-
+    const isFocused  = useIsFocused()
+    
     useEffect(()=>{
         getListingsApi.request(authContext.user)
-    }, [route])
+    }, [isFocused])
 
     const searchUpdated=()=>{
         return getListingsApi.data.filter(el=>el.name.toLowerCase().includes(searchTerm.toLowerCase()))////console.log("this is filtered",joe.length) 
