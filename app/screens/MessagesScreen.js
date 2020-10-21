@@ -11,6 +11,8 @@ import AuthContext from '../auth/context';
 import useApi from '../components/hooks/useApi';
 import listingsApi from '../api/listings';
 import jwtDecode from 'jwt-decode'
+import routes from '../components/navigation/routes'
+
 
 const Initialmessages = [
   {
@@ -33,7 +35,7 @@ const Initialmessages = [
   },
 ];
 
-const MessagesScreen = (props) => {
+const MessagesScreen = ({navigation,route}) => {
   const [messages, setMessages] = useState(Initialmessages)
   const [refreshing, setRefreshing] = useState(false)
   const authContext = useContext(AuthContext)
@@ -68,12 +70,13 @@ const MessagesScreen = (props) => {
         renderItem={({ item }) => (
           <ListItems
             title={item.correspondent.name} 
-            onPress={()=>console.log("Message selected",item)}
+            onPress={()=>navigation.navigate(routes.MESSAGES_DETAILS,item)}
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
         refreshing={refreshing}
         onRefresh={()=>{
+          getListingApi.request(user.user_id,token)
           setMessages([
             {
               id: 2,

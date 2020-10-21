@@ -10,6 +10,7 @@ const endpoint = 'patients';
 const endpointLedger = 'ledgers/'
 const endpoint2 = '/listings'
 const endpointMessages = 'users/'
+const endpointSendMessages ='messages'
 
 
 const getData = (token) => {
@@ -28,6 +29,18 @@ const getMessages = (user,token) => {
             Authorization:`bearer ${token}`
         }
     })
+}
+
+const addMessages=(user, recipient, content,token)=>{
+    // console.log("this is my addMessages api",user, recipient, content,token)
+    const message_params={
+        content:content, 
+        sender_id:user, 
+        recipient_id:recipient,
+        headers:`Authorization:bearer ${token}`
+    }
+    // console.log(message)
+    return client.post(endpointSendMessages,message_params)
     // return null
 }
 
@@ -82,4 +95,5 @@ export default {
     addLedger,
     addPatient,
     getMessages,
+    addMessages,
 }

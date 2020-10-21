@@ -8,6 +8,7 @@ import colors from "../config/colors";
 import * as Yup from "yup";
 import { AppForm as Form, AppFormField as FormField, AppFormPicker as Picker, SubmitButton } from "../components/forms";
 import DisplayImages from '../components/DisplayImages'
+
 const validationSchema = Yup.object().shape({
   description: Yup.string().required().min(1).label("Description"),
 });
