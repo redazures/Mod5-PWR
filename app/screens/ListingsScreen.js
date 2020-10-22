@@ -43,7 +43,6 @@ export default function ListingsScreen({navigation, route}) {
             {getListingsApi.loading && <ActivityIndicator animating={getListingsApi.loading} size={80}/>}
             <TextInput 
                 onChangeText={searchHandler} 
-                style={styles.searchInput}
                 placeholder="Type A Name To search"
             />
             <FlatList

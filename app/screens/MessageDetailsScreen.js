@@ -26,18 +26,21 @@ const MessagesScreen = ({navigation, route}) => {
   const user = jwtDecode(authContext.user)
   const correspondent = route.params.correspondent.name
   const correspondent_id = route.params.correspondent.id
-  const lastId=messages[messages.length-1].id
+  // let lastId=messages[messages.length-1].id ? messages[messages.length-1].id : 0
 
   const handleAdd = async (values,{resetForm}) =>{
     // console.log("this is my message sender",values.content, user.user_id, correspondent_id, lastId)
     const user_id = user.user_id
     const result = await listingsApi.addMessages(user_id,correspondent_id,values.content,authContext.user)
-    const newMessage = {
-      id:lastId+100,
-      sender_id:user_id,
-      content:values.content,
-    }
+    // const newMessage = {
+    //   id:lastId+100,
+    //   sender_id:user_id,
+    //   content:values.content,
+    // }
+    // lastId = lastId+100
     // console.log(newMessage)
+    const newMessage = result.data
+    console.log(newMessage)
     let newArray = [...messages,newMessage]
     setMessages(newArray)
     resetForm()

@@ -1,5 +1,5 @@
 import React,{useState, useEffect, useContext} from 'react';
-import { FlatList, StyleSheet, View} from 'react-native';
+import { FlatList, StyleSheet, TextInput, View} from 'react-native';
 
 
 //These are my components
@@ -44,7 +44,7 @@ const MessagesScreen = ({navigation,route}) => {
   const user = jwtDecode(authContext.user)
   const token = authContext.user
   const isFocused  = useIsFocused()
-
+  const [searchTerm, setSearchTerm] = useState("")
 
 
   useEffect(()=>{
@@ -59,13 +59,22 @@ const MessagesScreen = ({navigation,route}) => {
     setMessages(messages.filter(m => m.id!==message.id))
   }
 
+
+  const searchHandler=(term)=>{
+    setSearchTerm(term)
+}
+
   const messageHandler=()=>{
-    return getListingApi.data ? getListingApi.data.all_messages : messages
+    return getListingApi.data ? getListingApi.data.all_messages?.filter(el=>el.correspondent.name.toLowerCase().includes(searchTerm.toLowerCase())) : messages
   }
 
   // console.log("this is my messages",getListingApi.data)
   return (
     <Screen>
+      <TextInput 
+        onChangeText={searchHandler} 
+        placeholder="Type A Name To search"
+      />
       <FlatList
         data={messageHandler()}
         keyExtractor={item => item.correspondent.id.toString()}
