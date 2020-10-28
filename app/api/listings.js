@@ -84,8 +84,9 @@ const addPatient = async (obj)=>{
         type: 'image/jpeg',
         uri: image,
     }))
-    // console.log(data)
+    console.log(data)
     return client.post(endpoint, data)
+    // return null
 }
 
 export default {

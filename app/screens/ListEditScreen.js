@@ -23,6 +23,7 @@ export default function ListingEditScreen({navigation}) {
     const authContext = useContext(AuthContext)
 
     const handleSubmit = async (obj,{resetForm}) =>{
+        // console.log(obj)
         const result = await listingsApi.addPatient({...obj,authContext})
         if (!result.ok) return alert ('Could not save data at this time')
         alert('success')
@@ -33,7 +34,7 @@ export default function ListingEditScreen({navigation}) {
     return (
         <Screen style={styles.container}>
             <Form
-                initialValues={{ name: "", room: "", description: "", images:[]}}
+                initialValues={{ name: "", room: "", description: "", images:[],patient_id:""}}
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >
