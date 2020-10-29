@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "DoneWithIt",
-    "slug": "DoneWithIt",
+    "name": "Privileged with Responsibility",
+    "slug": "pwr",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
@@ -13,13 +13,16 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
     },
-    "description": "I am trying to create a shell market place to work with"
+    "description": "This is the front end to my React Native Application. ",
+    "githubUrl": "https://github.com/redazures/my_appts_frontend"
   }
 }
